@@ -1,0 +1,1139 @@
+Put your HTML text here<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dragon Crypto | فخر الخدمات الرقمية في السودان</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <style>
+        :root {
+            --gold: #D4AF37;
+            --black: #050505;
+            --card-bg: #111111;
+            --glass: rgba(255, 255, 255, 0.03);
+            --error: #ff4757;
+            --success: #2ed573;
+            --telegram: #0088cc;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+        body { background-color: var(--black); color: #fff; overflow-x: hidden; }
+
+        /* Header & Hero */
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* شعار الخلفية الشفاف */
+        .logo-watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(10rem, 25vw, 25rem);
+            font-weight: 900;
+            background: linear-gradient(to right, rgba(212, 175, 55, 0.03), rgba(212, 175, 55, 0.01), rgba(212, 175, 55, 0.03));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: transparent;
+            opacity: 0.15;
+            z-index: 1;
+            white-space: nowrap;
+            letter-spacing: 15px;
+            pointer-events: none;
+            user-select: none;
+        }
+
+        /* محتوى الهيدر فوق الشعار */
+        .header-content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+        }
+
+        .logo-text {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(3rem, 10vw, 5rem);
+            background: linear-gradient(to right, var(--gold), #fff, var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 3;
+        }
+
+        /* Sections */
+        .container { max-width: 1000px; margin: auto; padding: 40px 20px; position: relative; z-index: 2; }
+        .card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+        }
+        .card::before {
+            content: ""; position: absolute; top: 0; right: 0; width: 50px; height: 4px; background: var(--gold); border-radius: 0 25px 0 25px;
+        }
+
+        h2 { color: var(--gold); margin-bottom: 25px; font-weight: 900; font-size: 1.8rem; }
+
+        /* النجاحات */
+        .success-box {
+            border-right: 4px solid var(--gold); padding: 20px; background: var(--glass); margin-bottom: 20px;
+        }
+
+        /* الأسلحة (الخدمات) */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
+        .srv-item {
+            background: #1a1a1a; padding: 15px; border-radius: 15px; text-align: center;
+            border: 1px solid #333; transition: 0.3s;
+        }
+        .srv-item:hover { border-color: var(--gold); transform: scale(1.05); }
+
+        /* طريقة العمل */
+        .step { display: flex; align-items: center; margin-bottom: 20px; background: var(--glass); padding: 15px; border-radius: 15px; }
+        .step-num { font-size: 2rem; font-weight: 900; color: var(--gold); margin-left: 20px; min-width: 40px; }
+
+        /* نظام الفريق */
+        .team-system {
+            background: linear-gradient(135deg, #d4af37 0%, #8a6d1d 100%);
+            color: #000; padding: 30px; border-radius: 20px; text-align: center; font-weight: 900;
+            border: 2px solid #fff;
+        }
+
+        .team-system h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: #000;
+        }
+
+        /* Form */
+        .form-area { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        @media (max-width: 650px) { .form-area { grid-template-columns: 1fr; } }
+
+        input, select {
+            width: 100%; padding: 15px; background: #000; border: 1px solid #333; color: #fff;
+            border-radius: 12px; outline: none; margin-bottom: 15px; transition: 0.3s;
+        }
+        input:focus { border-color: var(--gold); }
+
+        /* أنماط خاصة للحقول الجديدة */
+        .field-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        
+        .field-label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gold);
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        
+        .field-note {
+            display: block;
+            margin-top: 5px;
+            font-size: 0.8rem;
+            color: #aaa;
+            line-height: 1.4;
+        }
+        
+        .warning-note {
+            color: var(--gold);
+            background: rgba(212, 175, 55, 0.1);
+            padding: 8px 12px;
+            border-radius: 8px;
+            border-right: 2px solid var(--gold);
+            margin-top: 5px;
+            font-size: 0.85rem;
+        }
+        
+        .required-star {
+            color: var(--error);
+            font-weight: bold;
+            margin-right: 3px;
+        }
+
+        .btn-join {
+            width: 100%; padding: 20px; background: var(--gold); color: #000; border: none;
+            border-radius: 15px; font-weight: 900; font-size: 1.3rem; cursor: pointer; transition: 0.4s;
+            margin-top: 20px;
+        }
+        .btn-join:hover { background: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.3); }
+
+        footer { text-align: center; padding: 40px; color: #444; border-top: 1px solid #111; }
+        
+        /* New styles for affiliate section */
+        .affiliate-options {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 12px;
+            border-right: 3px solid var(--gold);
+        }
+        
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.3s;
+        }
+        
+        .radio-option:hover {
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .radio-option input[type="radio"] {
+            width: 18px;
+            height: 18px;
+            accent-color: var(--gold);
+        }
+        
+        .affiliate-field {
+            margin-top: 15px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            border: 1px solid #333;
+            transition: all 0.3s;
+            display: none;
+        }
+        
+        .affiliate-field.show {
+            display: block;
+            border-color: var(--gold);
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .validation-error {
+            color: var(--error);
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .validation-error.show {
+            display: block;
+        }
+        
+        /* تأثيرات إضافية للشعار */
+        .logo-watermark::before {
+            content: "DRAGON";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.05) 50%, transparent 70%);
+            background-size: 200% 200%;
+            animation: shine 8s infinite linear;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        @keyframes shine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* قسم روابط التواصل */
+        .contact-links {
+            margin: 40px auto 60px;
+            max-width: 1000px;
+            padding: 0 20px;
+        }
+
+        .contact-links h2 {
+            text-align: center;
+            margin-bottom: 40px;
+            color: var(--gold);
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .contact-links h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            right: 50%;
+            transform: translateX(50%);
+            width: 100px;
+            height: 3px;
+            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            border-radius: 2px;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .link-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px 25px;
+            text-align: center;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 0;
+            background: var(--gold);
+            border-radius: 0 20px 20px 0;
+            transition: height 0.4s ease;
+        }
+
+        .link-card:hover::before {
+            height: 100%;
+        }
+
+        .link-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--gold);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .link-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.8rem;
+            background: rgba(212, 175, 55, 0.1);
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold);
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover .link-icon {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--gold);
+            transform: scale(1.1);
+        }
+
+        .link-title {
+            font-size: 1.3rem;
+            font-weight: 900;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .link-desc {
+            font-size: 0.95rem;
+            color: #aaa;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .btn-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+            padding: 12px 25px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .btn-link:hover {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
+        }
+
+        .btn-link i {
+            font-size: 1.1rem;
+        }
+
+        .whatsapp-link { color: #25D366; }
+        .facebook-link { color: #1877F2; }
+        .support-link { color: var(--gold); }
+        .telegram-link { color: var(--telegram); }
+        
+        /* أنماط جديدة للحقول */
+        .password-strength {
+            height: 4px;
+            border-radius: 2px;
+            margin-top: 5px;
+            transition: all 0.3s;
+        }
+        
+        .password-weak { width: 25%; background: var(--error); }
+        .password-medium { width: 50%; background: #ffa502; }
+        .password-strong { width: 100%; background: var(--success); }
+        
+        /* كورس خاص */
+        .course-card {
+            background: linear-gradient(135deg, rgba(0, 136, 204, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
+            border: 2px solid rgba(0, 136, 204, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .course-card::after {
+            content: "✨ كورس حصري";
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: linear-gradient(135deg, var(--telegram), var(--gold));
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            z-index: 2;
+        }
+        
+        .course-card .link-icon {
+            background: rgba(0, 136, 204, 0.1);
+            border-color: rgba(0, 136, 204, 0.3);
+            color: var(--telegram);
+        }
+        
+        .course-card:hover {
+            border-color: var(--telegram);
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.2);
+        }
+        
+        .course-card:hover .link-icon {
+            background: rgba(0, 136, 204, 0.2);
+            border-color: var(--telegram);
+            color: var(--telegram);
+        }
+        
+        .course-instructor {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 10px 0;
+            font-size: 0.9rem;
+            color: var(--telegram);
+            font-weight: 600;
+        }
+        
+        .course-instructor i {
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .links-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .link-card {
+                padding: 25px 20px;
+            }
+            
+            .contact-links h2 {
+                font-size: 1.7rem;
+            }
+            
+            .form-area {
+                grid-template-columns: 1fr;
+            }
+            
+            .course-card::after {
+                top: 10px;
+                left: 10px;
+                font-size: 0.7rem;
+                padding: 4px 10px;
+            }
+        }
+        
+        /* تخصيص النافذة المنبثقة */
+        .custom-alert {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .alert-content {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 30px;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid var(--gold);
+            text-align: center;
+        }
+        
+        .alert-content h3 {
+            color: var(--gold);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .alert-content p {
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+        
+        .alert-content .password-display {
+            background: #000;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid var(--gold);
+            font-family: monospace;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            word-break: break-all;
+        }
+        
+        .alert-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .alert-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 10px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .alert-btn.confirm {
+            background: var(--gold);
+            color: #000;
+        }
+        
+        .alert-btn.cancel {
+            background: #333;
+            color: #fff;
+        }
+        
+        .alert-btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <!-- شعار الخلفية الشفاف -->
+        <div class="logo-watermark">DRAGON</div>
+        
+        <div class="header-content">
+            <div class="logo-text animate__animated animate__fadeInDown">DRAGON</div>
+            <h2 style="color: #fff; letter-spacing: 5px; font-size: 1rem;">THE SUDANESE EMPIRE</h2>
+            <p style="margin-top: 20px; color: var(--gold);">أهلاً بيك في عالم الكبار.. إنت هسع مع رقم #1 في السودان 🇸🇩</p>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="card animate__animated animate__fadeInUp">
+            <h2>🌍 من هم Dragon Crypto?</h2>
+            <div class="success-box">
+                <p>نحنا مجتمع رقمي متطور ومتخصص في تقديم ونشر الخدمات الإلكترونية المختلفة، ومعانا خبرة قوية في التداول والاستثمار الرقمي 💸.</p>
+                <p>نهدف لتمكين المسوقين والشركاء عشان يحققوا أرباح حقيقية ويطوروا مهاراتهم الرقمية، في بيئة تفاعلية، مبتكرة، وشفافة.</p>
+            </div>
+        </div>
+
+        <div class="card animate__animated animate__fadeInUp">
+            <h2>⚔️ أسلحتك الحتشتغل بيها (الخدمات)</h2>
+            <div class="services-grid">
+                <div class="srv-item">خدمات بنكك 🏦</div>
+                <div class="srv-item">شحن ألعاب 🎮</div>
+                <div class="srv-item">استارلينك 📡</div>
+                <div class="srv-item">فيزا وماستركارد 💳</div>
+                <div class="srv-item">كريبتو USDT 💎</div>
+                <div class="srv-item">نيتفلكس وشاهد 🎬</div>
+                <div class="srv-item">سوشيال ميديا 📱</div>
+                <div class="srv-item">تحويلات فورية 💸</div>
+            </div>
+            <h3 style="text-align: center; margin-top: 25px; color: var(--gold);">
+                🔥 وكل الخدمات الرقمية البتخطر على بالك.. يخ أقول ليك؟ كل الخدمات عندنا!
+            </h3>
+        </div>
+
+        <div class="card animate__animated animate__fadeInUp">
+            <h2>🧠 كيف الشغل بيمشي؟ (ببساطة)</h2>
+            <div class="step">
+                <div class="step-num">01</div>
+                <div>
+                    <strong>انشر الإعلان:</strong> بنوفر لك إعلانات جاهزة (صور وفيديوهات)، انشرها في جميع مواقع التواصل الاجتماعي.
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: #aaa;">
+                        <i class="fab fa-facebook" style="color: #1877F2;"></i> فيسبوك | 
+                        <i class="fab fa-whatsapp" style="color: #25D366;"></i> واتساب | 
+                        <i class="fab fa-telegram" style="color: #0088cc;"></i> تيليجرام | 
+                        <i class="fab fa-instagram" style="color: #E4405F;"></i> انستقرام
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">02</div>
+                <div>
+                    <strong>قدم الخدمة:</strong> قدم شرحًا وافيًا للزبون عن الخدمة، ثم انقله للأدمن لاتمام عملية الدفع.
+                    <div style="margin-top: 10px; font-size: 0.9rem; color: #aaa;">
+                        💡 شرح واضح للخدمة → 📞 نقل العميل للأدمن → 💳 إتمام عملية الدفع
+                    </div>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-num">03</div>
+                <div><strong>أقبض عمولتك:</strong> أول ما العملية تنتهي، عمولتك بتتحول ليك في المحفظة البتختارها إنت.</div>
+            </div>
+        </div>
+
+        <div class="card team-system animate__animated animate__pulse animate__infinite">
+            <h3>💰 نظام "الدخل النائم" (Passive Income)</h3>
+            <p>لو جبت مسوق وسجل عن طريقك، حتاخد 10% من عمولة أي شغل هو بيعمله.. </p>
+            <p style="font-size: 0.9rem; margin-top: 10px;">يعني تبني فريقك وتخلي القروش تجيك وإنت نائم بتشرب في جبنتك! ☕</p>
+        </div>
+
+        <div class="card animate__animated animate__fadeInUp">
+            <h2>📝 سجل بياناتك وانضم للكتيبة</h2>
+            
+            <div class="form-area">
+                <div class="field-group">
+                    <label class="field-label">
+                        <span class="required-star">*</span> الاسم الكامل
+                    </label>
+                    <input type="text" id="full_name" placeholder="أدخل اسمك الكامل كما في الوثائق الرسمية" required>
+                    <div class="validation-error" id="nameError">الرجاء إدخال الاسم الكامل</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">
+                        <span class="required-star">*</span> رقم الواتساب
+                    </label>
+                    <input type="tel" id="phone" placeholder="مثال: 249123456789" required>
+                    <div class="validation-error" id="phoneError">الرجاء إدخال رقم واتساب صحيح</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">
+                        <span class="required-star">*</span> البريد الإلكتروني
+                    </label>
+                    <input type="email" id="email" placeholder="example@domain.com" required>
+                    <div class="validation-error" id="emailError">الرجاء إدخال بريد إلكتروني صحيح</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">
+                        <span class="required-star">*</span> الرقم الوطني
+                    </label>
+                    <input type="text" id="national_id" placeholder="أدخل الرقم الوطني كاملاً" required>
+                    <div class="validation-error" id="nationalIdError">الرقم الوطني مطلوب للتحقق من الهوية</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">
+                        <span class="required-star">*</span> تاريخ الميلاد
+                    </label>
+                    <input type="date" id="birth_date" required>
+                    <div class="validation-error" id="birthDateError">الرجاء تحديد تاريخ الميلاد</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">
+                        <span class="required-star">*</span> رابط حسابك على مواقع التواصل
+                    </label>
+                    <input type="url" id="social_link" placeholder="رابط حساب الفيسبوك، تيليجرام، إلخ" required>
+                    <div class="validation-error" id="socialLinkError">الرجاء إدخال رابط حساب التواصل الاجتماعي</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">
+                        <span class="required-star">*</span> خبرتك في التسويق كيف؟
+                    </label>
+                    <select id="exp_level" required>
+                        <option value="" disabled selected>اختر مستوى خبرتك</option>
+                        <option value="مبتدئ">مبتدئ (أريد التدريب)</option>
+                        <option value="متوسط">متوسط (عندي فكرة)</option>
+                        <option value="محترف">محترف (عندي جيش زبائن)</option>
+                    </select>
+                    <div class="validation-error" id="expError">الرجاء تحديد مستوى الخبرة</div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">
+                        <span class="required-star">*</span> كلمة سر سحب الأرباح
+                    </label>
+                    <input type="password" id="withdrawal_password" placeholder="أدخل كلمة سر قوية (8 أحرف على الأقل)" required minlength="8">
+                    <div class="validation-error" id="passwordError">كلمة السر يجب أن تكون 8 أحرف على الأقل</div>
+                    <div class="password-strength" id="passwordStrength"></div>
+                    <div class="warning-note">
+                        <i class="fas fa-exclamation-triangle"></i> احفظ كلمة السر بعناية، لا تشاركها مع أي شخص
+                    </div>
+                </div>
+                
+                <div class="field-group">
+                    <label class="field-label">
+                        <span class="required-star">*</span> داير تستلم قروشك كيف؟
+                    </label>
+                    <select id="pay_method" required>
+                        <option value="" disabled selected>اختر طريقة الدفع المفضلة</option>
+                        <option value="بنكك">بنكك (Bankak)</option>
+                        <option value="ماي كاشي">ماي كاشي (MyCashy)</option>
+                        <option value="أوكاش">أوكاش (OKash)</option>
+                        <option value="فوري">فوري (Fawry)</option>
+                        <option value="محفظة رقمية">محفظة رقمية (USDT)</option>
+                    </select>
+                    <div class="validation-error" id="payMethodError">الرجاء اختيار طريقة الدفع</div>
+                </div>
+            </div>
+            
+            <div class="affiliate-options">
+                <label class="field-label">
+                    <strong>هل تم تسجيلك عبر مسوق تابع لنا؟</strong>
+                </label>
+                <div class="radio-group">
+                    <label class="radio-option">
+                        <input type="radio" name="affiliate" value="yes" onclick="toggleAffiliateField(true)">
+                        نعم، تم تسجيلي عبر مسوق تابع لنا
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" name="affiliate" value="no" onclick="toggleAffiliateField(false)" checked>
+                        لا، أنا مسوق مستقل
+                    </label>
+                </div>
+                
+                <div class="affiliate-field" id="affiliateField">
+                    <label class="field-label">
+                        <span class="required-star">*</span> اسم أو رقم المسوق
+                    </label>
+                    <input 
+                        type="text" 
+                        id="affiliate_name" 
+                        placeholder="أدخل اسم أو رقم المسوق الذي قام بتسجيلك"
+                    >
+                    <div class="validation-error" id="affiliateError">
+                        يرجى إدخال اسم أو رقم المسوق
+                    </div>
+                    <p style="font-size: 0.85rem; color: #aaa; margin-top: 8px;">
+                        هذا الحقل ضروري لتطبيق نظام العمولة للمسوق الذي قام بتسجيلك
+                    </p>
+                </div>
+            </div>
+            
+            <button class="btn-join" onclick="validateAndRegister()">
+                <i class="fas fa-paper-plane"></i> إرسال البيانات وتفعيل الحساب
+            </button>
+            
+            <p style="text-align: center; margin-top: 20px; font-size: 0.85rem; color: #aaa;">
+                <i class="fas fa-lock"></i> جميع بياناتك محمية وسرية ولا تتم مشاركتها مع أي جهة خارجية
+            </p>
+        </div>
+
+    </div>
+
+    <!-- قسم روابط التواصل والقنوات الرسمية -->
+    <div class="contact-links animate__animated animate__fadeInUp">
+        <h2>📞 روابط التواصل الرسمية</h2>
+        <div class="links-grid">
+            <div class="link-card">
+                <div class="link-icon">
+                    <i class="fab fa-whatsapp"></i>
+                </div>
+                <h3 class="link-title">قناة العروض الحصرية</h3>
+                <p class="link-desc">انضم لقناتنا الرسمية على الواتساب لتكون أول من يعرف عن العروض والتحديثات الجديدة.</p>
+                <a href="https://chat.whatsapp.com/DxaKydHBwvq8yZF235P8T3" target="_blank" class="btn-link whatsapp-link">
+                    <i class="fab fa-whatsapp"></i> انضم الآن
+                </a>
+            </div>
+            
+            <div class="link-card">
+                <div class="link-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3 class="link-title">مجتمع المناقشة المفتوحة</h3>
+                <p class="link-desc">شارك في النقاشات مع فريقنا والمجتمع، اسأل واستفسر وشارك تجاربك مع المسوقين الآخرين.</p>
+                <a href="https://chat.whatsapp.com/ELFZlZ95VxRI3BcRuSFhM4" target="_blank" class="btn-link whatsapp-link">
+                    <i class="fas fa-comments"></i> انضم للمجتمع
+                </a>
+            </div>
+            
+            <div class="link-card">
+                <div class="link-icon">
+                    <i class="fab fa-facebook"></i>
+                </div>
+                <h3 class="link-title">صفحتنا على الفيسبوك</h3>
+                <p class="link-desc">تابعنا على فيسبوك لمعرفة آخر أخبارنا وشاهد محتوانا الحصري والتعرف على المزيد من المسوقين.</p>
+                <a href="https://www.facebook.com/share/1LjvTsiuU4/?mibextid=qi2Omg" target="_blank" class="btn-link facebook-link">
+                    <i class="fab fa-facebook"></i> تابعنا على فيسبوك
+                </a>
+            </div>
+            
+            <div class="link-card">
+                <div class="link-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="link-title">الدعم الفني المباشر</h3>
+                <p class="link-desc">لديك استفسار أو تحتاج مساعدة؟ فريق الدعم جاهز للرد على استفساراتك على مدار الساعة.</p>
+                <a href="https://wa.me/249906361815" target="_blank" class="btn-link support-link">
+                    <i class="fab fa-whatsapp"></i> تواصل مع الدعم
+                </a>
+            </div>
+            
+            <!-- كورس التسويق الإلكتروني -->
+            <div class="link-card course-card">
+                <div class="link-icon">
+                    <i class="fab fa-telegram"></i>
+                </div>
+                <h3 class="link-title">كورس التسويق الإلكتروني</h3>
+                <div class="course-instructor">
+                    <i class="fas fa-user-graduate"></i>
+                    <span>مقدمة من: مسوقتنا المتميزة رماز السيد</span>
+                </div>
+                <p class="link-desc">كورس متكامل لتعلم أساسيات التسويق الإلكتروني، استراتيجيات النجاح، وكيفية تحقيق أرباح حقيقية في المجال الرقمي.</p>
+                <a href="https://t.me/Electronic_marketing0" target="_blank" class="btn-link telegram-link">
+                    <i class="fab fa-telegram"></i> انضم للكورس على التليجرام
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- نافذة التنبيه المخصصة -->
+    <div class="custom-alert" id="customAlert">
+        <div class="alert-content">
+            <h3>⚠️ تنبيه هام!</h3>
+            <p>سيتم الآن إرسال طلب التسجيل مع عرض كلمة السر الخاصة بك في رسالة الواتساب.</p>
+            <p><strong>تنبيه:</strong> كلمة السر ستكون ظاهرة في الرسالة. احفظ الرسالة في مكان آمن ولا تشاركها مع أي شخص.</p>
+            
+            <div class="password-display" id="passwordDisplay"></div>
+            
+            <p>هل تريد المتابعة وإرسال الطلب؟</p>
+            
+            <div class="alert-buttons">
+                <button class="alert-btn cancel" onclick="closeAlert()">إلغاء</button>
+                <button class="alert-btn confirm" onclick="sendRegistration()">نعم، أرسل الطلب</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 DRAGON CRYPTO GROUP</p>
+        <p>السيادة الرقمية | Omdurman, Sudan</p>
+    </footer>
+
+    <script>
+        // متغيرات عامة لتخزين البيانات قبل الإرسال
+        let registrationData = {};
+        
+        // إظهار/إخفاء حقل المسوق التابع
+        function toggleAffiliateField(isAffiliate) {
+            const affiliateField = document.getElementById("affiliateField");
+            const affiliateNameInput = document.getElementById("affiliate_name");
+            const affiliateError = document.getElementById("affiliateError");
+            
+            if (isAffiliate) {
+                affiliateField.classList.add("show");
+                affiliateNameInput.required = true;
+                affiliateError.classList.remove("show");
+            } else {
+                affiliateField.classList.remove("show");
+                affiliateNameInput.required = false;
+                affiliateError.classList.remove("show");
+                affiliateNameInput.value = ""; // مسح القيمة عند الاختيار "لا"
+            }
+        }
+        
+        // إخفاء حقل المسوق التابع افتراضيًا
+        document.addEventListener("DOMContentLoaded", function() {
+            toggleAffiliateField(false);
+            
+            // اختيار "لا" افتراضيًا
+            document.querySelector('input[name="affiliate"][value="no"]').checked = true;
+            
+            // تعيين التاريخ الأدنى لتاريخ الميلاد (18 سنة من الآن)
+            const today = new Date();
+            const minDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
+            const maxDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+            
+            document.getElementById('birth_date').max = minDate.toISOString().split('T')[0];
+            document.getElementById('birth_date').min = maxDate.toISOString().split('T')[0];
+            
+            // إضافة مستمع لكلمة السر لقياس قوتها
+            document.getElementById('withdrawal_password').addEventListener('input', function() {
+                checkPasswordStrength(this.value);
+            });
+        });
+        
+        // دالة التحقق من قوة كلمة السر
+        function checkPasswordStrength(password) {
+            const strengthBar = document.getElementById('passwordStrength');
+            
+            if (password.length === 0) {
+                strengthBar.className = 'password-strength';
+                return;
+            }
+            
+            let strength = 0;
+            
+            // التحقق من الطول
+            if (password.length >= 8) strength++;
+            
+            // التحقق من وجود حروف كبيرة وصغيرة
+            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
+            
+            // التحقق من وجود أرقام
+            if (/\d/.test(password)) strength++;
+            
+            // التحقق من وجود رموز خاصة
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            // تحديث شريط القوة
+            strengthBar.className = 'password-strength';
+            
+            if (strength === 1) {
+                strengthBar.classList.add('password-weak');
+            } else if (strength === 2 || strength === 3) {
+                strengthBar.classList.add('password-medium');
+            } else if (strength === 4) {
+                strengthBar.classList.add('password-strong');
+            }
+        }
+        
+        // التحقق من صحة النموذج
+        function validateForm() {
+            let isValid = true;
+            
+            // إخفاء جميع رسائل الخطأ
+            document.querySelectorAll('.validation-error').forEach(error => {
+                error.classList.remove('show');
+            });
+            
+            // التحقق من الحقول الإلزامية
+            const requiredFields = [
+                { id: 'full_name', error: 'nameError' },
+                { id: 'phone', error: 'phoneError' },
+                { id: 'email', error: 'emailError' },
+                { id: 'national_id', error: 'nationalIdError' },
+                { id: 'birth_date', error: 'birthDateError' },
+                { id: 'social_link', error: 'socialLinkError' },
+                { id: 'exp_level', error: 'expError' },
+                { id: 'withdrawal_password', error: 'passwordError' },
+                { id: 'pay_method', error: 'payMethodError' }
+            ];
+            
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field.id);
+                const error = document.getElementById(field.error);
+                
+                if (!input.value.trim()) {
+                    error.classList.add('show');
+                    isValid = false;
+                }
+            });
+            
+            // التحقق من البريد الإلكتروني
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (email && !emailRegex.test(email)) {
+                document.getElementById('emailError').textContent = 'البريد الإلكتروني غير صحيح';
+                document.getElementById('emailError').classList.add('show');
+                isValid = false;
+            }
+            
+            // التحقق من كلمة السر
+            const password = document.getElementById('withdrawal_password').value;
+            if (password && password.length < 8) {
+                document.getElementById('passwordError').classList.add('show');
+                isValid = false;
+            }
+            
+            // التحقق من المسوق التابع
+            const affiliateYes = document.querySelector('input[name="affiliate"][value="yes"]').checked;
+            const affiliateName = document.getElementById('affiliate_name').value;
+            
+            if (affiliateYes && !affiliateName.trim()) {
+                document.getElementById('affiliateError').classList.add('show');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        // دالة لإغلاق نافذة التنبيه
+        function closeAlert() {
+            document.getElementById('customAlert').style.display = 'none';
+        }
+        
+        // دالة التسجيل الرئيسية
+        function validateAndRegister() {
+            if (!validateForm()) {
+                alert("❗ الرجاء تعبئة جميع الحقول المطلوبة بشكل صحيح");
+                return;
+            }
+            
+            // جمع البيانات
+            registrationData = {
+                name: document.getElementById('full_name').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                nationalId: document.getElementById('national_id').value,
+                birthDate: document.getElementById('birth_date').value,
+                socialLink: document.getElementById('social_link').value,
+                exp: document.getElementById('exp_level').value,
+                password: document.getElementById('withdrawal_password').value,
+                pay: document.getElementById('pay_method').value,
+                affiliateYes: document.querySelector('input[name="affiliate"][value="yes"]').checked,
+                affiliateName: document.getElementById('affiliate_name').value
+            };
+            
+            // عرض كلمة السر في نافذة التنبيه
+            document.getElementById('passwordDisplay').textContent = registrationData.password;
+            document.getElementById('customAlert').style.display = 'flex';
+        }
+        
+        // دالة إرسال التسجيل النهائية
+        function sendRegistration() {
+            // إغلاق نافذة التنبيه
+            closeAlert();
+            
+            // تحديد نوع المسوق
+            let marketerType = "📌 مسوق مستقل";
+            if (registrationData.affiliateYes) {
+                marketerType = `📌 مسوق تابع عبر: ${registrationData.affiliateName}`;
+            }
+            
+            // تحويل تاريخ الميلاد إلى الميلادي بشكل مختصر
+            const birthDateObj = new Date(registrationData.birthDate);
+            const formattedBirthDate = `${birthDateObj.getFullYear()}/${String(birthDateObj.getMonth() + 1).padStart(2, '0')}/${String(birthDateObj.getDate()).padStart(2, '0')}`;
+            
+            // بناء نص الرسالة المختصر والاحترافي
+            const text = `*📋 طلب تسجيل مسوق جديد*%0a%0a` +
+                         `*الاسم:* ${registrationData.name}%0a` +
+                         `*الرقم الوطني:* ${registrationData.nationalId}%0a` +
+                         `*الميلاد:* ${formattedBirthDate}%0a` +
+                         `*الرقم:* ${registrationData.phone}%0a` +
+                         `*البريد:* ${registrationData.email}%0a` +
+                         `*الصفحة:* ${registrationData.socialLink}%0a` +
+                         `*الخبرة:* ${registrationData.exp}%0a` +
+                         `*الدفع:* ${registrationData.pay}%0a` +
+                         `*${marketerType}*%0a` +
+                         `*كلمة السر:* ${registrationData.password}%0a%0a` +
+                         `_تاريخ الطلب: ${new Date().toLocaleDateString('ar-SA')}_`;
+
+            // إرسال البيانات إلى السيرفر
+            sendToServer(
+                registrationData.name,
+                registrationData.phone,
+                registrationData.email,
+                registrationData.nationalId,
+                formattedBirthDate,
+                registrationData.socialLink,
+                registrationData.exp,
+                registrationData.password,
+                registrationData.pay,
+                registrationData.affiliateYes ? 'yes' : 'no',
+                registrationData.affiliateName
+            );
+            
+            // فتح رابط الواتساب
+            window.open(`https://wa.me/249906361815?text=${text}`, '_blank');
+            
+            // عرض رسالة تأكيد مختصرة
+            setTimeout(() => {
+                alert("✅ تم إرسال الطلب بنجاح!\n\nسيتم التواصل معك قريباً.");
+            }, 500);
+            
+            // إعادة تعيين النموذج بعد 2 ثانية
+            setTimeout(() => {
+                if (confirm("هل تريد تعبئة نموذج تسجيل آخر؟")) {
+                    location.reload();
+                }
+            }, 2000);
+        }
+        
+        // دالة محاكاة لإرسال البيانات للسيرفر
+        function sendToServer(name, phone, email, nationalId, birthDate, socialLink, exp, password, pay, affiliateType, affiliateName) {
+            const data = {
+                full_name: name,
+                phone: phone,
+                email: email,
+                national_id: nationalId,
+                birth_date: birthDate,
+                social_link: socialLink,
+                experience: exp,
+                withdrawal_password: password,
+                payment_method: pay,
+                affiliate_type: affiliateType,
+                affiliate_name: affiliateType === 'yes' ? affiliateName : null,
+                commission_rate: 10,
+                registration_date: new Date().toISOString(),
+                status: 'pending'
+            };
+            
+            console.log('📤 إرسال البيانات للسيرفر:', data);
+            
+            // هنا يمكنك إضافة كود AJAX لإرسال البيانات إلى السيرفر الحقيقي
+            // fetch('your-api-endpoint', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(data)
+            // })
+        }
+    </script>
+</body>
+</html>
