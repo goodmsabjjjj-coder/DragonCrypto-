@@ -1,1138 +1,2583 @@
-Put your HTML text here<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dragon Crypto | فخر الخدمات الرقمية في السودان</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;600;900&family=Orbitron:wght@700&display=swap" rel="stylesheet">
+    <title>Dragon Crypto - الأكاديمية الشاملة للتسويق الرقمي</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap">
     <style>
         :root {
-            --gold: #D4AF37;
-            --black: #050505;
-            --card-bg: #111111;
-            --glass: rgba(255, 255, 255, 0.03);
-            --error: #ff4757;
-            --success: #2ed573;
-            --telegram: #0088cc;
+            --primary: #D4AF37; /* ذهبي */
+            --gold-light: #FFD700;
+            --gold-dark: #B8860B;
+            --black: #000000;
+            --black-bg: #111111;
+            --dark-gray: #1A1A1A;
+            --gray: #333333;
+            --light-gray: #222222;
+            --border: #333333;
+            --text: #FFFFFF;
+            --text-light: #CCCCCC;
+            --success: #2ecc71;
+            --info: #3498db;
+            --warning: #f39c12;
+            --danger: #e74c3c;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
-        body { background-color: var(--black); color: #fff; overflow-x: hidden; }
-
-        /* Header & Hero */
-        header {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
-            text-align: center;
-            padding: 20px;
-            position: relative;
-            overflow: hidden;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        /* شعار الخلفية الشفاف */
-        .logo-watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(10rem, 25vw, 25rem);
-            font-weight: 900;
-            background: linear-gradient(to right, rgba(212, 175, 55, 0.03), rgba(212, 175, 55, 0.01), rgba(212, 175, 55, 0.03));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            color: transparent;
-            opacity: 0.15;
-            z-index: 1;
-            white-space: nowrap;
-            letter-spacing: 15px;
-            pointer-events: none;
-            user-select: none;
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
         }
 
-        /* محتوى الهيدر فوق الشعار */
-        .header-content {
-            position: relative;
-            z-index: 2;
+        body {
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.8;
+            color: var(--text);
+            background-color: var(--black);
+            direction: rtl;
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" opacity="0.03"><rect width="100" height="100" fill="none" stroke="%23D4AF37" stroke-width="2"/><path d="M0,0 L100,100 M100,0 L0,100" stroke="%23D4AF37" stroke-width="1"/></svg>');
+            overflow-x: hidden;
+        }
+
+        .container {
             width: 100%;
-        }
-
-        .logo-text {
-            font-family: 'Orbitron', sans-serif;
-            font-size: clamp(3rem, 10vw, 5rem);
-            background: linear-gradient(to right, var(--gold), #fff, var(--gold));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 3;
-        }
-
-        /* Sections */
-        .container { max-width: 1000px; margin: auto; padding: 40px 20px; position: relative; z-index: 2; }
-        .card {
-            background: var(--card-bg);
-            border-radius: 25px;
-            padding: 30px;
-            margin-bottom: 40px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            position: relative;
-        }
-        .card::before {
-            content: ""; position: absolute; top: 0; right: 0; width: 50px; height: 4px; background: var(--gold); border-radius: 0 25px 0 25px;
-        }
-
-        h2 { color: var(--gold); margin-bottom: 25px; font-weight: 900; font-size: 1.8rem; }
-
-        /* النجاحات */
-        .success-box {
-            border-right: 4px solid var(--gold); padding: 20px; background: var(--glass); margin-bottom: 20px;
-        }
-
-        /* الأسلحة (الخدمات) */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; }
-        .srv-item {
-            background: #1a1a1a; padding: 15px; border-radius: 15px; text-align: center;
-            border: 1px solid #333; transition: 0.3s;
-        }
-        .srv-item:hover { border-color: var(--gold); transform: scale(1.05); }
-
-        /* طريقة العمل */
-        .step { display: flex; align-items: center; margin-bottom: 20px; background: var(--glass); padding: 15px; border-radius: 15px; }
-        .step-num { font-size: 2rem; font-weight: 900; color: var(--gold); margin-left: 20px; min-width: 40px; }
-
-        /* نظام الفريق */
-        .team-system {
-            background: linear-gradient(135deg, #d4af37 0%, #8a6d1d 100%);
-            color: #000; padding: 30px; border-radius: 20px; text-align: center; font-weight: 900;
-            border: 2px solid #fff;
-        }
-
-        .team-system h3 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
-            color: #000;
-        }
-
-        /* Form */
-        .form-area { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        @media (max-width: 650px) { .form-area { grid-template-columns: 1fr; } }
-
-        input, select {
-            width: 100%; padding: 15px; background: #000; border: 1px solid #333; color: #fff;
-            border-radius: 12px; outline: none; margin-bottom: 15px; transition: 0.3s;
-        }
-        input:focus { border-color: var(--gold); }
-
-        /* أنماط خاصة للحقول الجديدة */
-        .field-group {
-            position: relative;
-            margin-bottom: 20px;
-        }
-        
-        .field-label {
-            display: block;
-            margin-bottom: 8px;
-            color: var(--gold);
-            font-weight: 600;
-            font-size: 0.95rem;
-        }
-        
-        .field-note {
-            display: block;
-            margin-top: 5px;
-            font-size: 0.8rem;
-            color: #aaa;
-            line-height: 1.4;
-        }
-        
-        .warning-note {
-            color: var(--gold);
-            background: rgba(212, 175, 55, 0.1);
-            padding: 8px 12px;
-            border-radius: 8px;
-            border-right: 2px solid var(--gold);
-            margin-top: 5px;
-            font-size: 0.85rem;
-        }
-        
-        .required-star {
-            color: var(--error);
-            font-weight: bold;
-            margin-right: 3px;
-        }
-
-        .btn-join {
-            width: 100%; padding: 20px; background: var(--gold); color: #000; border: none;
-            border-radius: 15px; font-weight: 900; font-size: 1.3rem; cursor: pointer; transition: 0.4s;
-            margin-top: 20px;
-        }
-        .btn-join:hover { background: #fff; box-shadow: 0 0 20px rgba(255,255,255,0.3); }
-
-        footer { text-align: center; padding: 40px; color: #444; border-top: 1px solid #111; }
-        
-        /* New styles for affiliate section */
-        .affiliate-options {
-            margin: 20px 0;
-            padding: 15px;
-            background: rgba(212, 175, 55, 0.1);
-            border-radius: 12px;
-            border-right: 3px solid var(--gold);
-        }
-        
-        .radio-group {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 10px;
-        }
-        
-        .radio-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 8px;
-            transition: background 0.3s;
-        }
-        
-        .radio-option:hover {
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .radio-option input[type="radio"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--gold);
-        }
-        
-        .affiliate-field {
-            margin-top: 15px;
-            padding: 15px;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 12px;
-            border: 1px solid #333;
-            transition: all 0.3s;
-            display: none;
-        }
-        
-        .affiliate-field.show {
-            display: block;
-            border-color: var(--gold);
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .validation-error {
-            color: var(--error);
-            font-size: 0.85rem;
-            margin-top: 5px;
-            display: none;
-        }
-        
-        .validation-error.show {
-            display: block;
-        }
-        
-        /* تأثيرات إضافية للشعار */
-        .logo-watermark::before {
-            content: "DRAGON";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent 30%, rgba(212, 175, 55, 0.05) 50%, transparent 70%);
-            background-size: 200% 200%;
-            animation: shine 8s infinite linear;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        @keyframes shine {
-            0% { background-position: -200% center; }
-            100% { background-position: 200% center; }
-        }
-
-        /* قسم روابط التواصل */
-        .contact-links {
-            margin: 40px auto 60px;
-            max-width: 1000px;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 0 20px;
         }
 
-        .contact-links h2 {
-            text-align: center;
-            margin-bottom: 40px;
-            color: var(--gold);
-            font-size: 2rem;
+        /* Header Styles */
+        header {
+            background-color: rgba(0, 0, 0, 0.98);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.15);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
             position: relative;
         }
 
-        .contact-links h2::after {
-            content: "";
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--gold-dark));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black);
+            font-weight: 900;
+            font-size: 20px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.4);
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 15px rgba(212, 175, 55, 0.4); }
+            to { box-shadow: 0 0 25px rgba(212, 175, 55, 0.6); }
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--primary), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s;
+            padding: 8px 15px;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            background: rgba(212, 175, 55, 0.15);
+        }
+
+        .nav-links a.active::after {
+            content: '';
             position: absolute;
-            bottom: -10px;
+            bottom: -5px;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 80px;
+            right: 0;
+            width: 100%;
+            background: var(--dark-gray);
+            z-index: 1000;
+            padding: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .mobile-menu.active {
+            display: block;
+        }
+
+        .mobile-menu-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .mobile-menu-links a {
+            color: var(--text);
+            text-decoration: none;
+            padding: 15px;
+            border-radius: 8px;
+            background: rgba(212, 175, 55, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .mobile-menu-links a:hover {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 0 60px;
+            background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(26,26,26,0.95));
+            position: relative;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .hero-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 25px;
+            color: var(--primary);
+            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: var(--gold-light);
+            margin-bottom: 35px;
+            line-height: 1.5;
+        }
+
+        .hero-description {
+            font-size: 18px;
+            color: var(--text-light);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        /* Registration Button in Hero */
+        .hero-registration {
+            margin-top: 40px;
+        }
+
+        .registration-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--gold-dark));
+            color: var(--black);
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 22px;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .registration-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
+        }
+
+        .registration-btn i {
+            margin-left: 10px;
+        }
+
+        /* Sections */
+        .section {
+            padding: 80px 0;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 15px rgba(212, 175, 55, 0.3);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
             right: 50%;
             transform: translateX(50%);
             width: 100px;
-            height: 3px;
-            background: linear-gradient(to right, transparent, var(--gold), transparent);
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--gold-dark));
             border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--text-light);
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        /* Learning Path */
+        .learning-path {
+            display: grid;
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .learning-step {
+            background: var(--dark-gray);
+            border-radius: 16px;
+            padding: 35px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .learning-step:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--gold-dark));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--black);
+            font-weight: 900;
+            font-size: 20px;
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .step-title {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .step-content {
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .step-content ul {
+            padding-right: 25px;
+            margin: 15px 0;
+        }
+
+        .step-content li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-right: 10px;
+        }
+
+        .step-content li::before {
+            content: "•";
+            color: var(--primary);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-right: 10px;
+        }
+
+        .step-highlight {
+            background: rgba(212, 175, 55, 0.08);
+            border-right: 4px solid var(--primary);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        /* Services Detailed */
+        .services-detailed {
+            display: grid;
+            gap: 40px;
+        }
+
+        .service-category {
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .category-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.15);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 24px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .category-title {
+            font-size: 28px;
+            color: var(--primary);
+        }
+
+        .service-item {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            transition: all 0.3s;
+        }
+
+        .service-item:hover {
+            border-color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .service-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .service-name {
+            font-size: 22px;
+            color: var(--gold-light);
+        }
+
+        .commission-badge {
+            background: linear-gradient(135deg, var(--primary), var(--gold-dark));
+            color: var(--black);
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 16px;
+            white-space: nowrap;
+        }
+
+        .commission-badge.hot {
+            background: linear-gradient(135deg, #ff0000, #ff6b6b);
+            animation: pulse 2s infinite;
+        }
+
+        .service-details {
+            margin-bottom: 25px;
+        }
+
+        .service-description {
+            color: var(--text-light);
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+
+        .target-audience {
+            background: rgba(212, 175, 55, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+
+        .target-audience h4 {
+            color: var(--gold-light);
+            margin-bottom: 10px;
+        }
+
+        .marketing-tips {
+            background: rgba(52, 152, 219, 0.05);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-right: 4px solid var(--info);
+        }
+
+        .marketing-tips h4 {
+            color: var(--info);
+            margin-bottom: 10px;
+        }
+
+        .profit-range {
+            background: rgba(46, 204, 113, 0.05);
+            padding: 12px 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-right: 4px solid var(--success);
+            display: inline-block;
+        }
+
+        .profit-range h4 {
+            color: var(--success);
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .profit-range p {
+            color: var(--text-light);
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .demand-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff0000, #ff6b6b);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+
+        .example-text {
+            background: rgba(212, 175, 55, 0.08);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            font-style: italic;
+            line-height: 1.7;
+        }
+
+        .copy-btn {
+            background: rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--gold-light);
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+            font-size: 14px;
+            margin-top: 10px;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .copy-btn:hover {
+            background: rgba(212, 175, 55, 0.2);
+            transform: translateY(-2px);
+        }
+
+        /* Links Section */
+        .links-section {
+            background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(26,26,26,0.95));
+            border-radius: 20px;
+            padding: 40px;
+            margin-top: 50px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
         }
 
         .links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 25px;
+            margin-top: 30px;
         }
 
         .link-card {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px 25px;
+            background: rgba(212, 175, 55, 0.05);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s;
             text-align: center;
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .link-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 4px;
-            height: 0;
-            background: var(--gold);
-            border-radius: 0 20px 20px 0;
-            transition: height 0.4s ease;
-        }
-
-        .link-card:hover::before {
-            height: 100%;
         }
 
         .link-card:hover {
-            transform: translateY(-8px);
-            border-color: var(--gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            background: rgba(212, 175, 55, 0.1);
         }
 
         .link-icon {
-            width: 70px;
-            height: 70px;
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .link-card h3 {
+            color: var(--gold-light);
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .link-card p {
+            color: var(--text-light);
+            font-size: 14px;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .link-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--gold-dark));
+            color: var(--black);
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.3s;
+        }
+
+        .link-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Commission System */
+        .commission-system {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .commission-card {
+            background: var(--dark-gray);
+            border-radius: 16px;
+            padding: 35px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            position: relative;
+            text-align: center;
+        }
+
+        .commission-card.premium {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.2);
+        }
+
+        .commission-card h3 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .commission-amount {
+            font-size: 48px;
+            font-weight: 900;
+            color: var(--primary);
+            margin: 20px 0;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+        }
+
+        .commission-details {
+            text-align: right;
+            margin-top: 25px;
+        }
+
+        .commission-details li {
+            color: var(--text-light);
+            margin-bottom: 15px;
+            padding-right: 10px;
+            line-height: 1.6;
+        }
+
+        /* Strategies Section */
+        .strategies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .strategy-card {
+            background: var(--dark-gray);
+            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            transition: all 0.3s;
+        }
+
+        .strategy-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .strategy-icon {
+            width: 60px;
+            height: 60px;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .strategy-card h3 {
+            color: var(--primary);
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        /* FAQ Section */
+        .faq-container {
+            max-width: 900px;
+            margin: 40px auto 0;
+        }
+
+        .faq-item {
+            background: var(--dark-gray);
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            overflow: hidden;
+        }
+
+        .faq-question {
+            padding: 20px 25px;
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--text);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.3s;
+        }
+
+        .faq-question:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .faq-answer {
+            padding: 0 25px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            color: var(--text-light);
+            line-height: 1.8;
+        }
+
+        .faq-answer.active {
+            padding: 20px 25px;
+            max-height: 1000px;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--black);
+            color: var(--text);
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            transform: translateX(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.1);
+            color: var(--text-light);
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .hero-subtitle {
+                font-size: 20px;
+            }
+            
+            .section-title h2 {
+                font-size: 30px;
+            }
+            
+            .commission-system {
+                grid-template-columns: 1fr;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .registration-btn {
+                padding: 15px 30px;
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 60px 0;
+            }
+            
+            .hero {
+                padding: 120px 0 40px;
+            }
+            
+            .learning-step {
+                padding: 25px;
+            }
+            
+            .service-item {
+                padding: 20px;
+            }
+            
+            .commission-amount {
+                font-size: 36px;
+            }
+            
+            .service-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .commission-badge {
+                align-self: flex-start;
+            }
+            
+            .links-section {
+                padding: 25px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 28px;
+            }
+            
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            
+            .section-title h2 {
+                font-size: 24px;
+            }
+            
+            .category-title {
+                font-size: 22px;
+            }
+            
+            .service-name {
+                font-size: 18px;
+            }
+            
+            .registration-btn {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+        }
+
+        /* Utility Classes */
+        .text-center { text-align: center; }
+        .text-gold { color: var(--primary); }
+        .mt-4 { margin-top: 25px; }
+        .mb-4 { margin-bottom: 25px; }
+        .mb-8 { margin-bottom: 50px; }
+        .p-4 { padding: 25px; }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: var(--dark-gray);
+            border: 1px solid var(--primary);
+            border-radius: 10px;
+            padding: 15px 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            z-index: 1002;
+            transform: translateX(150%);
+            transition: transform 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            max-width: 350px;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast-icon {
+            font-size: 24px;
+            color: var(--primary);
+        }
+
+        .toast-content {
+            flex: 1;
+        }
+
+        .toast-close {
+            background: none;
+            border: none;
+            color: var(--text-light);
+            font-size: 20px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .toast-close:hover {
+            color: var(--primary);
+        }
+
+        /* WhatsApp Button */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 35px;
+            left: 35px;
+            width: 65px;
+            height: 65px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-            background: rgba(212, 175, 55, 0.1);
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            color: var(--gold);
-            transition: all 0.3s ease;
-        }
-
-        .link-card:hover .link-icon {
-            background: rgba(212, 175, 55, 0.2);
-            border-color: var(--gold);
-            transform: scale(1.1);
-        }
-
-        .link-title {
-            font-size: 1.3rem;
-            font-weight: 900;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .link-desc {
-            font-size: 0.95rem;
-            color: #aaa;
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .btn-link {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            background: rgba(212, 175, 55, 0.1);
-            color: var(--gold);
-            padding: 12px 25px;
-            border-radius: 12px;
+            color: white;
+            font-size: 28px;
+            box-shadow: 0 8px 20px rgba(37, 211, 102, 0.4);
+            z-index: 1000;
+            animation: pulse 2s infinite;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 0.95rem;
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            transition: all 0.3s ease;
-            width: 100%;
-            max-width: 200px;
-        }
-
-        .btn-link:hover {
-            background: rgba(212, 175, 55, 0.2);
-            border-color: var(--gold);
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.2);
-        }
-
-        .btn-link i {
-            font-size: 1.1rem;
-        }
-
-        .whatsapp-link { color: #25D366; }
-        .facebook-link { color: #1877F2; }
-        .support-link { color: var(--gold); }
-        .telegram-link { color: var(--telegram); }
-        
-        /* أنماط جديدة للحقول */
-        .password-strength {
-            height: 4px;
-            border-radius: 2px;
-            margin-top: 5px;
             transition: all 0.3s;
         }
-        
-        .password-weak { width: 25%; background: var(--error); }
-        .password-medium { width: 50%; background: #ffa502; }
-        .password-strong { width: 100%; background: var(--success); }
-        
-        /* كورس خاص */
-        .course-card {
-            background: linear-gradient(135deg, rgba(0, 136, 204, 0.1) 0%, rgba(212, 175, 55, 0.1) 100%);
-            border: 2px solid rgba(0, 136, 204, 0.3);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .course-card::after {
-            content: "✨ كورس حصري";
-            position: absolute;
-            top: 15px;
-            left: 15px;
-            background: linear-gradient(135deg, var(--telegram), var(--gold));
-            color: white;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 900;
-            z-index: 2;
-        }
-        
-        .course-card .link-icon {
-            background: rgba(0, 136, 204, 0.1);
-            border-color: rgba(0, 136, 204, 0.3);
-            color: var(--telegram);
-        }
-        
-        .course-card:hover {
-            border-color: var(--telegram);
-            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.2);
-        }
-        
-        .course-card:hover .link-icon {
-            background: rgba(0, 136, 204, 0.2);
-            border-color: var(--telegram);
-            color: var(--telegram);
-        }
-        
-        .course-instructor {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 10px 0;
-            font-size: 0.9rem;
-            color: var(--telegram);
-            font-weight: 600;
-        }
-        
-        .course-instructor i {
-            font-size: 1.1rem;
+
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.6);
         }
 
-        @media (max-width: 768px) {
-            .links-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .link-card {
-                padding: 25px 20px;
-            }
-            
-            .contact-links h2 {
-                font-size: 1.7rem;
-            }
-            
-            .form-area {
-                grid-template-columns: 1fr;
-            }
-            
-            .course-card::after {
-                top: 10px;
-                left: 10px;
-                font-size: 0.7rem;
-                padding: 4px 10px;
-            }
+        /* Floating Elements */
+        .floating-element {
+            position: absolute;
+            opacity: 0.1;
+            z-index: 0;
+            pointer-events: none;
         }
-        
-        /* تخصيص النافذة المنبثقة */
-        .custom-alert {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 9999;
-            justify-content: center;
-            align-items: center;
+
+        .dragon-float {
+            animation: float 20s infinite linear;
         }
-        
-        .alert-content {
-            background: var(--card-bg);
-            border-radius: 20px;
-            padding: 30px;
-            width: 90%;
-            max-width: 500px;
-            border: 2px solid var(--gold);
-            text-align: center;
-        }
-        
-        .alert-content h3 {
-            color: var(--gold);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-        
-        .alert-content p {
-            margin-bottom: 15px;
-            line-height: 1.6;
-        }
-        
-        .alert-content .password-display {
-            background: #000;
-            padding: 15px;
-            border-radius: 10px;
-            border: 1px solid var(--gold);
-            font-family: monospace;
-            font-size: 1.2rem;
-            margin: 20px 0;
-            word-break: break-all;
-        }
-        
-        .alert-buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 25px;
-        }
-        
-        .alert-btn {
-            flex: 1;
-            padding: 12px;
-            border-radius: 10px;
-            border: none;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        
-        .alert-btn.confirm {
-            background: var(--gold);
-            color: #000;
-        }
-        
-        .alert-btn.cancel {
-            background: #333;
-            color: #fff;
-        }
-        
-        .alert-btn:hover {
-            transform: translateY(-2px);
+
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(100px, 100px) rotate(90deg); }
+            50% { transform: translate(0, 200px) rotate(180deg); }
+            75% { transform: translate(-100px, 100px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
         }
     </style>
 </head>
 <body>
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <div class="toast-content">
+            <strong id="toastTitle">تم النسخ بنجاح!</strong>
+            <p id="toastMessage">تم نسخ النص إلى الحافظة</p>
+        </div>
+        <button class="toast-close" id="toastClose">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
 
+    <!-- Floating Elements -->
+    <div class="floating-element dragon-float" style="top: 10%; right: 5%; font-size: 50px;">🐉</div>
+    <div class="floating-element dragon-float" style="top: 60%; left: 10%; font-size: 40px;">💎</div>
+    <div class="floating-element dragon-float" style="top: 30%; left: 5%; font-size: 60px;">💰</div>
+
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/249906361815?text=مرحباً%20أريد%20البدء%20في%20العمل%20مع%20Dragon%20Crypto%20كمسوق%20للخدمات%20الرقمية" 
+       class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Navigation -->
     <header>
-        <!-- شعار الخلفية الشفاف -->
-        <div class="logo-watermark">DRAGON</div>
+        <div class="container nav-container">
+            <a href="#home" class="logo">
+                <div class="logo-icon">DC</div>
+                <div class="logo-text">Dragon Crypto</div>
+            </a>
+            
+            <nav class="nav-links">
+                <a href="#home" class="active"><i class="fas fa-home"></i> الرئيسية</a>
+                <a href="#learning-path"><i class="fas fa-graduation-cap"></i> الدليل الشامل</a>
+                <a href="#services-detailed"><i class="fas fa-cogs"></i> الخدمات والعمولات</a>
+                <a href="#strategies"><i class="fas fa-chart-line"></i> استراتيجيات متقدمة</a>
+                <a href="#commissions-system"><i class="fas fa-money-bill-wave"></i> نظام العمولات</a>
+                <a href="#faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a>
+            </nav>
+            
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
         
-        <div class="header-content">
-            <div class="logo-text animate__animated animate__fadeInDown">DRAGON</div>
-            <h2 style="color: #fff; letter-spacing: 5px; font-size: 1rem;">THE SUDANESE EMPIRE</h2>
-            <p style="margin-top: 20px; color: var(--gold);">أهلاً بيك في عالم الكبار.. إنت هسع مع رقم #1 في السودان 🇸🇩</p>
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-menu-links">
+                <a href="#home"><i class="fas fa-home"></i> الرئيسية</a>
+                <a href="#learning-path"><i class="fas fa-graduation-cap"></i> الدليل الشامل</a>
+                <a href="#services-detailed"><i class="fas fa-cogs"></i> الخدمات والعمولات</a>
+                <a href="#strategies"><i class="fas fa-chart-line"></i> استراتيجيات متقدمة</a>
+                <a href="#commissions-system"><i class="fas fa-money-bill-wave"></i> نظام العمولات</a>
+                <a href="#faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a>
+            </div>
         </div>
     </header>
 
-    <div class="container">
-
-        <div class="card animate__animated animate__fadeInUp">
-            <h2>🌍 من هم Dragon Crypto?</h2>
-            <div class="success-box">
-                <p>نحنا مجتمع رقمي متطور ومتخصص في تقديم ونشر الخدمات الإلكترونية المختلفة، ومعانا خبرة قوية في التداول والاستثمار الرقمي 💸.</p>
-                <p>نهدف لتمكين المسوقين والشركاء عشان يحققوا أرباح حقيقية ويطوروا مهاراتهم الرقمية، في بيئة تفاعلية، مبتكرة، وشفافة.</p>
-            </div>
-        </div>
-
-        <div class="card animate__animated animate__fadeInUp">
-            <h2>⚔️ أسلحتك الحتشتغل بيها (الخدمات)</h2>
-            <div class="services-grid">
-                <div class="srv-item">خدمات بنكك 🏦</div>
-                <div class="srv-item">شحن ألعاب 🎮</div>
-                <div class="srv-item">استارلينك 📡</div>
-                <div class="srv-item">فيزا وماستركارد 💳</div>
-                <div class="srv-item">كريبتو USDT 💎</div>
-                <div class="srv-item">نيتفلكس وشاهد 🎬</div>
-                <div class="srv-item">سوشيال ميديا 📱</div>
-                <div class="srv-item">تحويلات فورية 💸</div>
-            </div>
-            <h3 style="text-align: center; margin-top: 25px; color: var(--gold);">
-                🔥 وكل الخدمات الرقمية البتخطر على بالك.. يخ أقول ليك؟ كل الخدمات عندنا!
-            </h3>
-        </div>
-
-        <div class="card animate__animated animate__fadeInUp">
-            <h2>🧠 كيف الشغل بيمشي؟ (ببساطة)</h2>
-            <div class="step">
-                <div class="step-num">01</div>
-                <div>
-                    <strong>انشر الإعلان:</strong> بنوفر لك إعلانات جاهزة (صور وفيديوهات)، انشرها في جميع مواقع التواصل الاجتماعي.
-                    <div style="margin-top: 10px; font-size: 0.9rem; color: #aaa;">
-                        <i class="fab fa-facebook" style="color: #1877F2;"></i> فيسبوك | 
-                        <i class="fab fa-whatsapp" style="color: #25D366;"></i> واتساب | 
-                        <i class="fab fa-telegram" style="color: #0088cc;"></i> تيليجرام | 
-                        <i class="fab fa-instagram" style="color: #E4405F;"></i> انستقرام
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h1>🎓 أكاديمية Dragon Crypto للتسويق الرقمي</h1>
+                    <div class="hero-subtitle">
+                        🚀 دليلك الشامل للربح من التسويق الرقمي - من الصفر إلى الاحتراف
+                    </div>
+                    <div class="hero-description">
+                        مرحباً بك في المنصة التعليمية الشاملة الأولى للتسويق الرقمي في السودان والعالم العربي. 
+                        هنا ستتعلم كل ما تحتاجه لتصبح مسوقاً محترفاً، تبدأ في الربح من اليوم الأول، 
+                        وتطور مهاراتك لتحقيق أرباح خيالية. نقدم لك شرحاً مفصلاً خطوة بخطوة، 
+                        مع دعم مستمر وفرص حقيقية للربح.
+                    </div>
+                    
+                    <!-- Registration Button in Hero -->
+                    <div class="hero-registration">
+                        <a href="https://goodmsabjjjj-coder.github.io/DragonCrypto-/" class="registration-btn" target="_blank">
+                            <i class="fas fa-user-plus"></i> التسجيل والانضمام الآن
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="step">
-                <div class="step-num">02</div>
-                <div>
-                    <strong>قدم الخدمة:</strong> قدم شرحًا وافيًا للزبون عن الخدمة، ثم انقله للأدمن لاتمام عملية الدفع.
-                    <div style="margin-top: 10px; font-size: 0.9rem; color: #aaa;">
-                        💡 شرح واضح للخدمة → 📞 نقل العميل للأدمن → 💳 إتمام عملية الدفع
-                    </div>
-                </div>
-            </div>
-            <div class="step">
-                <div class="step-num">03</div>
-                <div><strong>أقبض عمولتك:</strong> أول ما العملية تنتهي، عمولتك بتتحول ليك في المحفظة البتختارها إنت.</div>
-            </div>
-        </div>
+        </section>
 
-        <div class="card team-system animate__animated animate__pulse animate__infinite">
-            <h3>💰 نظام "الدخل النائم" (Passive Income)</h3>
-            <p>لو جبت مسوق وسجل عن طريقك، حتاخد 10% من عمولة أي شغل هو بيعمله.. </p>
-            <p style="font-size: 0.9rem; margin-top: 10px;">يعني تبني فريقك وتخلي القروش تجيك وإنت نائم بتشرب في جبنتك! ☕</p>
-        </div>
-
-        <div class="card animate__animated animate__fadeInUp">
-            <h2>📝 سجل بياناتك وانضم للكتيبة</h2>
-            
-            <div class="form-area">
-                <div class="field-group">
-                    <label class="field-label">
-                        <span class="required-star">*</span> الاسم الكامل
-                    </label>
-                    <input type="text" id="full_name" placeholder="أدخل اسمك الكامل كما في الوثائق الرسمية" required>
-                    <div class="validation-error" id="nameError">الرجاء إدخال الاسم الكامل</div>
+        <!-- Learning Path Section -->
+        <section id="learning-path" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>🗺️ الدليل الشامل خطوة بخطوة</h2>
+                    <p>دليلك الكامل للبدء والتطور والربح من التسويق الرقمي مع Dragon Crypto</p>
                 </div>
                 
-                <div class="field-group">
-                    <label class="field-label">
-                        <span class="required-star">*</span> رقم الواتساب
-                    </label>
-                    <input type="tel" id="phone" placeholder="مثال: 249123456789" required>
-                    <div class="validation-error" id="phoneError">الرجاء إدخال رقم واتساب صحيح</div>
-                </div>
-                
-                <div class="field-group">
-                    <label class="field-label">
-                        <span class="required-star">*</span> البريد الإلكتروني
-                    </label>
-                    <input type="email" id="email" placeholder="example@domain.com" required>
-                    <div class="validation-error" id="emailError">الرجاء إدخال بريد إلكتروني صحيح</div>
-                </div>
-                
-                <div class="field-group">
-                    <label class="field-label">
-                        <span class="required-star">*</span> الرقم الوطني
-                    </label>
-                    <input type="text" id="national_id" placeholder="أدخل الرقم الوطني كاملاً" required>
-                    <div class="validation-error" id="nationalIdError">الرقم الوطني مطلوب للتحقق من الهوية</div>
-                </div>
-                
-                <div class="field-group">
-                    <label class="field-label">
-                        <span class="required-star">*</span> تاريخ الميلاد
-                    </label>
-                    <input type="date" id="birth_date" required>
-                    <div class="validation-error" id="birthDateError">الرجاء تحديد تاريخ الميلاد</div>
-                </div>
-                
-                <div class="field-group">
-                    <label class="field-label">
-                        <span class="required-star">*</span> رابط حسابك على مواقع التواصل
-                    </label>
-                    <input type="url" id="social_link" placeholder="رابط حساب الفيسبوك، تيليجرام، إلخ" required>
-                    <div class="validation-error" id="socialLinkError">الرجاء إدخال رابط حساب التواصل الاجتماعي</div>
-                </div>
-                
-                <div class="field-group">
-                    <label class="field-label">
-                        <span class="required-star">*</span> خبرتك في التسويق كيف؟
-                    </label>
-                    <select id="exp_level" required>
-                        <option value="" disabled selected>اختر مستوى خبرتك</option>
-                        <option value="مبتدئ">مبتدئ (أريد التدريب)</option>
-                        <option value="متوسط">متوسط (عندي فكرة)</option>
-                        <option value="محترف">محترف (عندي جيش زبائن)</option>
-                    </select>
-                    <div class="validation-error" id="expError">الرجاء تحديد مستوى الخبرة</div>
-                </div>
-                
-                <div class="field-group">
-                    <label class="field-label">
-                        <span class="required-star">*</span> كلمة سر سحب الأرباح
-                    </label>
-                    <input type="password" id="withdrawal_password" placeholder="أدخل كلمة سر قوية (8 أحرف على الأقل)" required minlength="8">
-                    <div class="validation-error" id="passwordError">كلمة السر يجب أن تكون 8 أحرف على الأقل</div>
-                    <div class="password-strength" id="passwordStrength"></div>
-                    <div class="warning-note">
-                        <i class="fas fa-exclamation-triangle"></i> احفظ كلمة السر بعناية، لا تشاركها مع أي شخص
+                <div class="learning-path">
+                    <!-- Step 1 -->
+                    <div class="learning-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">📝 التسجيل والانضمام</div>
+                        <div class="step-content">
+                            <p><strong>الخطوة الأولى والأهم:</strong> التسجيل الرسمي معنا للبدء في العمل.</p>
+                            <ul>
+                                <li>املأ بيانات التسجيل وأرسلها إلينا</li>
+                                <li>ستتلقى رداً بقبول طلبك أو رفضه خلال 24 ساعة كحد أقصى</li>
+                            </ul>
+                            <div class="step-highlight">
+                                💡 <strong>ملاحظة مهمة:</strong> يجب أن تكون بيانات التسجيل كاملة وصحيحة لتسريع عملية الرد.
+                            </div>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="field-group">
-                    <label class="field-label">
-                        <span class="required-star">*</span> داير تستلم قروشك كيف؟
-                    </label>
-                    <select id="pay_method" required>
-                        <option value="" disabled selected>اختر طريقة الدفع المفضلة</option>
-                        <option value="بنكك">بنكك (Bankak)</option>
-                        <option value="ماي كاشي">ماي كاشي (MyCashy)</option>
-                        <option value="أوكاش">أوكاش (OKash)</option>
-                        <option value="فوري">فوري (Fawry)</option>
-                        <option value="محفظة رقمية">محفظة رقمية (USDT)</option>
-                    </select>
-                    <div class="validation-error" id="payMethodError">الرجاء اختيار طريقة الدفع</div>
+                    
+                    <!-- Step 2 -->
+                    <div class="learning-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">🎯 فهم طبيعة العمل</div>
+                        <div class="step-content">
+                            <p><strong>كيف يعمل النظام:</strong> أنت كمسوق، دورك هو التوصيل بين الخدمات والعملاء المحتملين.</p>
+                            <ul>
+                                <li><strong>الخدمات جاهزة:</strong> نحن نوفر جميع الخدمات الرقمية المطلوبة في السوق</li>
+                                <li><strong>المواد التسويقية جاهزة:</strong> صور، نصوص، إعلانات، شعارات - كل ما تحتاجه</li>
+                                <li><strong>الدعم فوري:</strong> فريق دعم متواصل 24/7 للإجابة على جميع استفساراتك</li>
+                                <li><strong>العمولات مضمونة:</strong> تحصل على عمولتك فور إتمام الصفقة</li>
+                            </ul>
+                            <p>أنت <strong>لست مطالباً</strong> بتقديم الخدمات بنفسك، ولا بالتعامل الفني مع العملاء. 
+                            دورك هو <strong>التسويق والجلب</strong> فقط!</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 3 -->
+                    <div class="learning-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">🛒 استلام المواد التسويقية</div>
+                        <div class="step-content">
+                            <p><strong>كل ما تحتاجه للتسويق:</strong> بعد التسجيل، ستتلقى حزمة كاملة من المواد التسويقية:</p>
+                            <ul>
+                                <li><strong>نصوص إعلانية:</strong> نصوص جاهزة لجميع الخدمات يمكنك نسخها ولصقها</li>
+                                <li><strong>صور وإعلانات:</strong> تصميمات احترافية جاهزة للنشر</li>
+                                <li><strong>شعارات:</strong> شعارات Dragon Crypto لاستخدامها في التسويق</li>
+                                <li><strong>أدلة مساعدة:</strong> شرح مفصل لكل خدمة وكيفية تسويقها</li>
+                            </ul>
+                            <div class="step-highlight">
+                                🔥 <strong>نصيحة:</strong> يمكنك طلب أي مواد إضافية تحتاجها في أي وقت عبر الواتساب. 
+                                فريق التصميم جاهز لتلبية طلباتك في دقائق!
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 4 -->
+                    <div class="learning-step">
+                        <div class="step-number">4</div>
+                        <div class="step-title">📢 البدء في التسويق والبيع</div>
+                        <div class="step-content">
+                            <p><strong>طريقة العمل الصحيحة:</strong> اتبع هذه الخطوات لضمان نجاح العملية:</p>
+                            <ol>
+                                <li>تنشر الإعلان في المكان المناسب للخدمة</li>
+                                <li>يصل إليك عميل مهتم بالخدمة</li>
+                                <li>تقوم <strong>بشرح الخدمة للعميل</strong> بشكل مفصل</li>
+                                <li>تجاوب على جميع أسئلة واستفسارات العميل</li>
+                                <li>تقنع العميل وتجعله <strong>مستعداً للدفع</strong></li>
+                                <li>ترسل العميل إلينا <strong>مع ذكر أنك المسوق</strong></li>
+                                <li>نكمل عملية الدفع والتنفيذ مع العميل</li>
+                                <li>تحصل على عمولتك بعد إتمام الصفقة</li>
+                            </ol>
+                            <div class="step-highlight">
+                                ⚠️ <strong>تنبيه مهم:</strong> يجب عليك شرح الخدمة للعميل وجعله مستعداً للدفع قبل تحويله إلينا. 
+                                هذا يضمن نجاح العملية وحصولك على عمولتك.
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Step 5 -->
+                    <div class="learning-step">
+                        <div class="step-number">5</div>
+                        <div class="step-title">💰 استلام العمولات والتطور</div>
+                        <div class="step-content">
+                            <p><strong>نظام الدفع:</strong> نقدم أسرع نظام دفع في السوق:</p>
+                            <ul>
+                                <li><strong>العمولات الأساسية:</strong> 70,000 جنيه سوداني لكل عملية بيع ناجحة</li>
+                                <li><strong>العمولات الثانوية:</strong> 50% من ربح الشركة على كل عملية</li>
+                                <li><strong>وقت الدفع:</strong> فوري بعد إتمام الصفقة</li>
+                                <li><strong>طرق الدفع:</strong> بنكي أو USDT حسب رغبتك</li>
+                            </ul>
+                            <p><strong>التطور والترقية:</strong></p>
+                            <ul>
+                                <li>كلما زادت مبيعاتك، زادت ثقتنا بك</li>
+                                <li>المسوقين المتميزين يحصلون على عروض خاصة ومكافآت إضافية</li>
+                                <li>يمكنك بناء فريق مسوقين تحتك وتحصل على 10% من عمولاتهم</li>
+                                <li>فرص للترقية إلى مشرف أو مدير فريق</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <div class="affiliate-options">
-                <label class="field-label">
-                    <strong>هل تم تسجيلك عبر مسوق تابع لنا؟</strong>
-                </label>
-                <div class="radio-group">
-                    <label class="radio-option">
-                        <input type="radio" name="affiliate" value="yes" onclick="toggleAffiliateField(true)">
-                        نعم، تم تسجيلي عبر مسوق تابع لنا
-                    </label>
-                    <label class="radio-option">
-                        <input type="radio" name="affiliate" value="no" onclick="toggleAffiliateField(false)" checked>
-                        لا، أنا مسوق مستقل
-                    </label>
+        </section>
+
+        <!-- Services Detailed Section -->
+        <section id="services-detailed" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>🛍️ الخدمات والعمولات المفصلة</h2>
+                    <p>تفصيل كامل لكل الخدمات المتاحة، كيفية تسويقها، وعمولات كل خدمة</p>
                 </div>
                 
-                <div class="affiliate-field" id="affiliateField">
-                    <label class="field-label">
-                        <span class="required-star">*</span> اسم أو رقم المسوق
-                    </label>
-                    <input 
-                        type="text" 
-                        id="affiliate_name" 
-                        placeholder="أدخل اسم أو رقم المسوق الذي قام بتسجيلك"
-                    >
-                    <div class="validation-error" id="affiliateError">
-                        يرجى إدخال اسم أو رقم المسوق
+                <div class="services-detailed">
+                    <!-- Category 1: Basic Services -->
+                    <div class="service-category">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="category-title">🏆 الخدمات الأساسية (كورسات وتعليم)</div>
+                        </div>
+                        
+                        <!-- Service 1 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">📊 كورس التداول من الصفر للإحتراف</div>
+                                <div class="commission-badge">عمولة: 70,000 جنيه</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-description">
+                                    كورس متكامل لتعليم التداول في البورصة والعملات الرقمية، يتضمن دروس فيديو، تمارين عملية، 
+                                    ودعم مباشر من خبراء التداول.
+                                </div>
+                                
+                                <div class="step-highlight" style="margin: 15px 0;">
+                                    ⚠️ <strong>ملاحظة:</strong> الكورس لا يمنح شهادات معتمدة، ولكنه يركز على الجانب العملي والتطبيقي للربح الفعلي.
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>الشباب الراغب في الربح من الإنترنت</li>
+                                        <li>المبتدئين في مجال التداول</li>
+                                        <li>من فشلوا في التداول سابقاً ويريدون تعلم الطريقة الصحيحة</li>
+                                        <li>الموظفين الذين يبحثون عن دخل إضافي</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="marketing-tips">
+                                    <h4>💡 نصائح تسويقية:</h4>
+                                    <ul>
+                                        <li>ركز على "التعلم الآمن" بدلاً من "المخاطرة"</li>
+                                        <li>استخدم شهادات الخريجين السابقين</li>
+                                        <li>أبرز أن الكورس عملي وليس نظري فقط</li>
+                                        <li>ناقش مشاكل التداول العشوائي وكيف يحلها الكورس</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="example-text">
+                                    "🔥 هل جربت التداول من قبل وخسرت؟<br>
+                                    📊 كورسنا بيتعلمك التداول بطريقة آمنة ومربحة من الصفر للإحتراف<br>
+                                    🎓 أكثر من 500 متدرب نجحوا في تحقيق أرباح مستمرة<br>
+                                    💰 استثمر في تعليمك بدل ما تخسر في تجاربك<br>
+                                    📞 تواصل معنا لمعرفة التفاصيل"
+                                </div>
+                                
+                                <button class="copy-btn" data-text="🔥 هل جربت التداول من قبل وخسرت؟
+📊 كورسنا بيتعلمك التداول بطريقة آمنة ومربحة من الصفر للإحتراف
+🎓 أكثر من 500 متدرب نجحوا في تحقيق أرباح مستمرة
+💰 استثمر في تعليمك بدل ما تخسر في تجاربك
+📞 تواصل معنا لمعرفة التفاصيل">
+                                    <i class="far fa-copy"></i> نسخ النص التسويقي
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 2 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">👑 قناة توصيات VIP للتداول</div>
+                                <div class="commission-badge">عمولة: 70,000 جنيه</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-description">
+                                    قناة خاصة بتوصيات تداول يومية دقيقة، تحليل فني متقدم، وصفقات جاهزة للتطبيق.
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>المتداولين ذوي الخبرة الذين يحتاجون لتوصيات</li>
+                                        <li>المشغولين الذين لا يملكون وقتاً للتحليل اليومي</li>
+                                        <li>من يريدون زيادة دقة صفقاتهم</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="marketing-tips">
+                                    <h4>💡 نصائح تسويقية:</h4>
+                                    <ul>
+                                        <li>أظهر نتائج التوصيات السابقة</li>
+                                        <li>ركز على توفير الوقت والجهد</li>
+                                        <li>ذكر أن الاشتراك يدفع نفسه من أول صفقة ناجحة</li>
+                                        <li>استخدم لغة الأرقام والنسب المئوية</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="example-text">
+                                    "🚀 متداول محترف بس مش عارف تدخل الصفقات الصح؟<br>
+                                    👑 قناتنا VIP بتوصيك بتوصيات يومية دقيقة ومدروسة!<br>
+                                    📈 نسبة نجاح 85% ونتائج مثبتة!<br>
+                                    ⏱️ وفر وقتك وجهدك في التحليل<br>
+                                    💸 الاشتراك بيغطي نفسه من أول صفقة ناجحة!"
+                                </div>
+                                
+                                <button class="copy-btn" data-text="🚀 متداول محترف بس مش عارف تدخل الصفقات الصح؟
+👑 قناتنا VIP بتوصيك بتوصيات يومية دقيقة ومدروسة!
+📈 نسبة نجاح 85% ونتائج مثبتة!
+⏱️ وفر وقتك وجهدك في التحليل
+💸 الاشتراك بيغطي نفسه من أول صفقة ناجحة!">
+                                    <i class="far fa-copy"></i> نسخ النص التسويقي
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 3 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">💼 خدمة إدارة المحافظ الاستثمارية</div>
+                                <div class="commission-badge">عمولة: 50% من ربح المستثمر</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-description">
+                                    إدارة أموال العملاء واستثمارها في مشاريع آمنة مع تحقيق أرباح للمستثمر.
+                                </div>
+                                
+                                <div class="step-highlight" style="margin: 15px 0;">
+                                    💰 <strong>نظام العمولة:</strong> تحصل على <strong>50% من ربح المستثمر</strong> على كل عملية استثمار ناجحة.
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>أصح رؤوس الأموال الصغيرة والمتوسطة</li>
+                                        <li>الموظفين الذين يريدون استثمار مدخراتهم</li>
+                                        <li>من لا يملكون خبرة في الاستثمار</li>
+                                        <li>كبار السن الذين يبحثون عن استثمار آمن</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="marketing-tips">
+                                    <h4>💡 نصائح تسويقية:</h4>
+                                    <ul>
+                                        <li>ركز على "الأمان" و"الثبات"</li>
+                                        <li>ذكر العقود القانونية والضمانات</li>
+                                        <li>أظهر نسب الأرباح المتوقعة</li>
+                                        <li>ناقش مشكلة التضخم وكيف يحلها الاستثمار</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="example-text">
+                                    "💰 عندك مدخرات ومش عارف تشغلها؟<br>
+                                    💼 فريقنا المحترف بيستثمر أموالك في مشاريع آمنة<br>
+                                    📊 أرباح متوقعة تتراوح بين 10% إلى 50% سنوياً (قابلة للزيادة والنقصان)<br>
+                                    🔒 عقود موثقة وضمانات كاملة<br>
+                                    🤝 خبراء استثمار مع أكثر من 10 سنوات خبرة"
+                                </div>
+                                
+                                <button class="copy-btn" data-text="💰 عندك مدخرات ومش عارف تشغلها؟
+💼 فريقنا المحترف بيستثمر أموالك في مشاريع آمنة
+📊 أرباح متوقعة تتراوح بين 10% إلى 50% سنوياً (قابلة للزيادة والنقصان)
+🔒 عقود موثقة وضمانات كاملة
+🤝 خبراء استثمار مع أكثر من 10 سنوات خبرة">
+                                    <i class="far fa-copy"></i> نسخ النص التسويقي
+                                </button>
+                            </div>
+                        </div>
                     </div>
-                    <p style="font-size: 0.85rem; color: #aaa; margin-top: 8px;">
-                        هذا الحقل ضروري لتطبيق نظام العمولة للمسوق الذي قام بتسجيلك
+                    
+                    <!-- Category 2: Secondary Services -->
+                    <div class="service-category">
+                        <div class="category-header">
+                            <div class="category-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="category-title">✨ الخدمات الثانوية (يومية ومتنوعة)</div>
+                        </div>
+                        
+                        <!-- Service 4 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">📱 تحويل رصيد جميع الشبكات</div>
+                                <div class="commission-badge">عمولة: 50% من الأرباح</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-description">
+                                    تحويل رصيد فوري لجميع شبكات السودان (زين، MTN، سوداني) بأسرع وقت وأفضل الأسعار.
+                                </div>
+                                
+                                <div class="profit-range">
+                                    <h4>💰 متوسط الأرباح للمسوق:</h4>
+                                    <p>متوسط أرباح ممتازة من هذه الخدمة</p>
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>جميع مستخدمي الهواتف المحمولة</li>
+                                        <li>المسافرين داخل وخارج السودان</li>
+                                        <li>الطلاب والعائلات</li>
+                                        <li>أصحاب المحلات والشركات الصغيرة</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 5 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">🎮 شحن جواهر وألعاب</div>
+                                <div class="commission-badge">عمولة: 50% من الأرباح</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-description">
+                                    شحن جميع الألعاب الإلكترونية (Free Fire، PUBG، Call of Duty، Clash of Clans، وغيرها).
+                                </div>
+                                
+                                <div class="profit-range">
+                                    <h4>💰 متوسط الأرباح للمسوق:</h4>
+                                    <p>10,000 إلى 100,000 جنيه سوداني</p>
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>اللاعبين من سن 12 إلى 30 سنة</li>
+                                        <li>مجموعات الألعاب على تليجرام وواتساب</li>
+                                        <li>محتوى اليوتيوب الخاص بالألعاب</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 6 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">🏦 حل مشاكل البنوك (بنكك)</div>
+                                <div class="commission-badge">عمولة: 50% من الأرباح</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-description">
+                                    حل جميع المشاكل البنكية: تفعيل حسابات، استرجاع فلوس، كشف حسابات، استخراج أرقام، وحل أي مشكلة بنكية.
+                                </div>
+                                
+                                <div class="profit-range">
+                                    <h4>💰 متوسط الأرباح للمسوق:</h4>
+                                    <p>20,000 إلى 100,000 جنيه سوداني</p>
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>من يواجهون مشاكل في حساباتهم البنكية</li>
+                                        <li>من حولوا أموالاً بالخطأ</li>
+                                        <li>من فقدوا هواتفهم ولا يمكنهم الدخول لحساباتهم</li>
+                                        <li>الشركات الصغيرة والمتوسطة</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 7 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">💰 بيع وشراء USDT</div>
+                                <div class="commission-badge hot">🔥 عمولة: 50% من الأرباح</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="demand-badge">🔥 الطلب عالي جداً!</div>
+                                
+                                <div class="service-description">
+                                    تداول العملات الرقمية (USDT) بيع وشراء بأسعار منافسة وتحويلات آمنة.
+                                </div>
+                                
+                                <div class="step-highlight" style="margin: 15px 0;">
+                                    💹 <strong>نظام العمولة:</strong> العمولة والربح حسب الكمية المباعة - كلما زادت الكمية زادت عمولتك!
+                                </div>
+                                
+                                <div class="profit-range">
+                                    <h4>💰 متوسط الأرباح للمسوق:</h4>
+                                    <p>أرباح ممتازة حسب الكمية المباعة</p>
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>المتداولين في العملات الرقمية</li>
+                                        <li>المغتربين الذين يرسلون أموالاً للسودان</li>
+                                        <li>رواد الأعمال الرقميين</li>
+                                        <li>المستثمرين في العملات المشفرة</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="example-text">
+                                    "💱 أسرع خدمة لبيع وشراء USDT في السودان!<br>
+                                    🔥 الطلب عالي والأرباح ممتازة!<br>
+                                    ⚡ معاملات فورية وآمنة 100%<br>
+                                    💰 عمولات مرتفعة حسب الكمية!<br>
+                                    📞 تواصل الآن واحصل على أفضل الأسعار!"
+                                </div>
+                                
+                                <button class="copy-btn" data-text="💱 أسرع خدمة لبيع وشراء USDT في السودان!
+🔥 الطلب عالي والأرباح ممتازة!
+⚡ معاملات فورية وآمنة 100%
+💰 عمولات مرتفعة حسب الكمية!
+📞 تواصل الآن واحصل على أفضل الأسعار!">
+                                    <i class="far fa-copy"></i> نسخ النص التسويقي
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 8 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">🌐 تفعيل ودفع ستارلينك</div>
+                                <div class="commission-badge">عمولة: 50% من الأرباح</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-description">
+                                    دفع فواتير ستارلينك، تفعيل الخدمة، ومتابعة ودعم فني كامل.
+                                </div>
+                                
+                                <div class="profit-range">
+                                    <h4>💰 متوسط الأرباح للمسوق:</h4>
+                                    <p>20,000 إلى 50,000 جنيه سوداني</p>
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>مستخدمي ستارلينك في السودان</li>
+                                        <li>الشركات التي تستخدم الإنترنت الفضائي</li>
+                                        <li>من يعيشون في مناطق نائية</li>
+                                        <li>أصحاب الأعمال الذين يحتاجون إنترنت مستقر</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 9 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">📈 زيادة متابعين ومشاهدات</div>
+                                <div class="commission-badge">عمولة: 50% من الأرباح</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-description">
+                                    زيادة المتابعين والمشاهدات واللايكات لكل منصات السوشيال ميديا.
+                                </div>
+                                
+                                <div class="profit-range">
+                                    <h4>💰 متوسط الأرباح للمسوق:</h4>
+                                    <p>أرباح ممتازة من هذه الخدمة</p>
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>أصحاب الحسابات على السوشيال ميديا</li>
+                                        <li>المؤثرين والمشاهير</li>
+                                        <li>الشركات الناشئة</li>
+                                        <li>محتوى اليوتيوب والتيك توك</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 10 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">💳 فيزا كارد عالمية</div>
+                                <div class="commission-badge hot">🔥 عمولة: 50% من الأرباح</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="demand-badge">🔥 الطلب عالي جداً!</div>
+                                
+                                <div class="service-description">
+                                    بطاقات فيزا للدفع أونلاين حول العالم بدون حساب بنكي أو جواز سفر.
+                                </div>
+                                
+                                <div class="profit-range">
+                                    <h4>💰 متوسط الأرباح للمسوق:</h4>
+                                    <p>أرباح ممتازة تصل إلى 50,000 جنيه</p>
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>من يريدون التسوق من مواقع أجنبية</li>
+                                        <li>المغتربين السودانيين</li>
+                                        <li>رواد الأعمال الرقميين</li>
+                                        <li>من لا يملكون حسابات بنكية</li>
+                                        <li>الطلاب الذين يدرسون في الخارج</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="example-text">
+                                    "💳 بطاقة فيزا عالمية للدفع في أي موقع!<br>
+                                    🔥 الخدمة الأكثر طلباً في السوق!<br>
+                                    🌍 تسوق من أمازون، إيباي، نتفلكس وأي موقع!<br>
+                                    💰 عمولة 50% من الأرباح!<br>
+                                    🚀 انتهز الفرصة وابدأ الربح الآن!"
+                                </div>
+                                
+                                <button class="copy-btn" data-text="💳 بطاقة فيزا عالمية للدفع في أي موقع!
+🔥 الخدمة الأكثر طلباً في السوق!
+🌍 تسوق من أمازون، إيباي، نتفلكس وأي موقع!
+💰 عمولة 50% من الأرباح!
+🚀 انتهز الفرصة وابدأ الربح الآن!">
+                                    <i class="far fa-copy"></i> نسخ النص التسويقي
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 11 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">🎬 اشتراكات وتفعيل التطبيقات</div>
+                                <div class="commission-badge">عمولة: 50% من الأرباح</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-description">
+                                    اشتراكات نتفلكس، يوتيوب بريميوم، تطبيقات مدفوعة، وخدمات الذكاء الاصطناعي.
+                                </div>
+                                
+                                <div class="profit-range">
+                                    <h4>💰 متوسط الأرباح للمسوق:</h4>
+                                    <p>10,000 إلى 100,000 جنيه سوداني</p>
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>محبي الأفلام والمسلسلات</li>
+                                        <li>مستخدمي اليوتيوب الدائمين</li>
+                                        <li>المبرمجين والمصممين</li>
+                                        <li>الطلاب والباحثين</li>
+                                        <li>العائلات التي تستمتع بمشاهدة الأفلام</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 12 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">📜 استخراج الشهادات</div>
+                                <div class="commission-badge hot">🔥 عمولة: 50% من الأرباح</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="demand-badge">🔥 الطلب عالي جداً!</div>
+                                
+                                <div class="service-description">
+                                    متابعة استخراج الشهادات التعليمية الرسمية (ثانوية، أساس، متوسط) بكل سهولة.
+                                </div>
+                                
+                                <div class="profit-range">
+                                    <h4>💰 متوسط الأرباح للمسوق:</h4>
+                                    <p>20,000 إلى 50,000 جنيه سوداني</p>
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>الخريجين الجدد</li>
+                                        <li>من فقدوا شهاداتهم</li>
+                                        <li>المتقدمين للوظائف أو الجامعات</li>
+                                        <li>المغتربين الذين يحتاجون شهادات مصدقة</li>
+                                        <li>من يحتاجون شهادات للترقية الوظيفية</li>
+                                    </ul>
+                                </div>
+                                
+                                <div class="example-text">
+                                    "📜 فقدت شهادتك؟ أو تحتاج استخراجها؟<br>
+                                    🔥 الخدمة الأكثر طلباً من الخريجين!<br>
+                                    ⚡ إنجاز سريع وتوصيل لكل الولايات!<br>
+                                    💰 أرباح ممتازة تصل إلى 50,000 جنيه!<br>
+                                    📞 تواصل الآن واربح من أول عملية!"
+                                </div>
+                                
+                                <button class="copy-btn" data-text="📜 فقدت شهادتك؟ أو تحتاج استخراجها؟
+🔥 الخدمة الأكثر طلباً من الخريجين!
+⚡ إنجاز سريع وتوصيل لكل الولايات!
+💰 أرباح ممتازة تصل إلى 50,000 جنيه!
+📞 تواصل الآن واربح من أول عملية!">
+                                    <i class="far fa-copy"></i> نسخ النص التسويقي
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Service 13 -->
+                        <div class="service-item">
+                            <div class="service-header">
+                                <div class="service-name">🤖 خدمات الذكاء الاصطناعي</div>
+                                <div class="commission-badge">عمولة: 50% من الأرباح</div>
+                            </div>
+                            <div class="service-details">
+                                <div class="service-description">
+                                    اشتراكات ChatGPT Plus، Gemini Pro، Canva Pro، وأدوات الذكاء الاصطناعي المتقدمة.
+                                </div>
+                                
+                                <div class="profit-range">
+                                    <h4>💰 متوسط الأرباح للمسوق:</h4>
+                                    <p>أرباح ممتازة من هذه الخدمة</p>
+                                </div>
+                                
+                                <div class="target-audience">
+                                    <h4>🎯 الجمهور المستهدف:</h4>
+                                    <ul>
+                                        <li>الكتاب والمحررين</li>
+                                        <li>المبرمجين والمطورين</li>
+                                        <li>المصممين والفنانين</li>
+                                        <li>الطلاب والباحثين</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Advanced Strategies Section -->
+        <section id="strategies" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>🚀 استراتيجيات التسويق المتقدمة</h2>
+                    <p>تقنيات متقدمة لزيادة مبيعاتك ورفع عمولاتك إلى أقصى حد</p>
+                </div>
+                
+                <div class="strategies-grid">
+                    <!-- Strategy 1 -->
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-bullseye"></i>
+                        </div>
+                        <h3>🎯 استهداف دقيق</h3>
+                        <p><strong>لا تسوق للجميع!</strong> كل خدمة لها جمهورها الخاص:</p>
+                        <ul>
+                            <li>الكورسات: الشباب 18-35 سنة</li>
+                            <li>خدمات البنوك: جميع الأعمار</li>
+                            <li>الألعاب: المراهقين والشباب</li>
+                            <li>الفيزا: المسافرين والمغتربين</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Strategy 2 -->
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-comment-dollar"></i>
+                        </div>
+                        <h3>💬 فن الإقناع</h3>
+                        <p><strong>تقنيات إقناع العملاء:</strong></p>
+                        <ul>
+                            <li>استخدم قصص النجاح الحقيقية</li>
+                            <li>أبرز الفوائد وليس المميزات</li>
+                            <li>استخدم لغة الطوارئ (عرض محدود، كميات محدودة)</li>
+                            <li>قدم ضمانات وهم يريدون الأمان</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Strategy 3 -->
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h3>🌐 التسويق الشبكي</h3>
+                        <p><strong>ابني فريقك واربح أكثر:</strong></p>
+                        <ul>
+                            <li>كل مسوق تجيبه تحتك = 10% من عمولاته</li>
+                            <li>الفريق القوي يضمن دخلاً مستمراً</li>
+                            <li>التدريب والدعم لفريقك يزيد إنتاجيتهم</li>
+                            <li>المكافآت الجماعية تحفز الفريق</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Strategy 4 -->
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-chart-bar"></i>
+                        </div>
+                        <h3>📊 تحليل النتائج</h3>
+                        <p><strong>حلل وطور:</strong></p>
+                        <ul>
+                            <li>احتفظ بسجل للعملاء الناجحين</li>
+                            <li>حلل أي الخدمات تبيع أكثر</li>
+                            <li>حدد أوقات الذروة في البيع</li>
+                            <li>طور استراتيجيتك بناء على النتائج</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Strategy 5 -->
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-handshake"></i>
+                        </div>
+                        <h3>🤝 خدمة ما بعد البيع</h3>
+                        <p><strong>العميل السعيد يجلب عملاء جدد:</strong></p>
+                        <ul>
+                            <li>تابع مع العميل بعد الشراء</li>
+                            <li>اسأل عن تجربته مع الخدمة</li>
+                            <li>قدم له عروضاً خاصة كعميل دائم</li>
+                            <li>اطلب منه إحالة أصدقائه</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Strategy 6 -->
+                    <div class="strategy-card">
+                        <div class="strategy-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <h3>🏆 التميز والاحترافية</h3>
+                        <p><strong>كن مسوقاً محترفاً:</strong></p>
+                        <ul>
+                            <li>تعلم كل جديد في التسويق</li>
+                            <li>طور مهاراتك التواصلية</li>
+                            <li>كن صادقاً وواضحاً مع العملاء</li>
+                            <li>احترم وقتك ووقت العملاء</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="step-highlight" style="margin-top: 40px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">📈 خطة التطور الشهرية:</h4>
+                    <ol>
+                        <li><strong>الشهر الأول:</strong> تعرف على الخدمات، ابدأ التسويق، حقق 3 مبيعات على الأقل</li>
+                        <li><strong>الشهر الثاني:</strong> ركز على الخدمات الأكثر ربحاً، حقق 10 مبيعات</li>
+                        <li><strong>الشهر الثالث:</strong> ابنِ فريقاً صغيراً (2-3 مسوقين)، دربهم ودعمهم</li>
+                        <li><strong>الشهر الرابع فما فوق:</strong> طور فريقك، وسع نطاق تسويقك، كن قائد فريق</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <!-- Commission System Section -->
+        <section id="commissions-system" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>💰 نظام العمولات والمكافآت</h2>
+                    <p>تفصيل كامل لنظام الدفع والمكافآت والحوافز لمسوقي Dragon Crypto</p>
+                </div>
+                
+                <div class="commission-system">
+                    <!-- Card 1 -->
+                    <div class="commission-card">
+                        <h3>💎 العمولات الأساسية</h3>
+                        <div class="commission-amount">70,000 ج.س</div>
+                        <p>لكل عملية بيع ناجحة للخدمات الأساسية:</p>
+                        <div class="commission-details">
+                            <ul>
+                                <li>كورسات التداول والتعليم</li>
+                                <li>قنوات VIP للتوصيات</li>
+                                <li>✅ الدفع: فوري بعد إتمام الصفقة</li>
+                                <li>✅ لا حد أدنى للسحب</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 2 -->
+                    <div class="commission-card">
+                        <h3>✨ العمولات الثانوية</h3>
+                        <div class="commission-amount">50%</div>
+                        <p>من أرباح الشركة على كل عملية بيع للخدمات الثانوية:</p>
+                        <div class="commission-details">
+                            <ul>
+                                <li>تحويل رصيد وشحن ألعاب</li>
+                                <li>حلول البنوك و USDT</li>
+                                <li>الفيزا والاشتراكات</li>
+                                <li>✅ حساب دقيق للربح</li>
+                                <li>✅ شفافية كاملة</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Card 3 -->
+                    <div class="commission-card premium">
+                        <h3>🎁 المكافآت والحوافز</h3>
+                        <div class="commission-amount">+10%</div>
+                        <p>نظام المكافآت الإضافية:</p>
+                        <div class="commission-details">
+                            <ul>
+                                <li>👥 10% عمولة إضافية عن كل مسوق تجيبه</li>
+                                <li>🏆 مكافأة أول عملية: 10,000 جنيه إضافية</li>
+                                <li>🔥 حافز خاص لكل 5 عملاء من نفس المسوق</li>
+                                <li>⭐️ مكافآت موسمية في المناسبات</li>
+                                <li>💎 عروض خاصة للمسوقين المتميزين</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="step-highlight" style="margin-top: 40px;">
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">🧮 مثال عملي على حساب العمولات:</h4>
+                    <p>إذا قمت ببيع:</p>
+                    <ul>
+                        <li>كورس تداول (70,000 ج.س)</li>
+                        <li>خدمة شحن ألعاب (أرباح الشركة 20,000 ج.س × 50% = 10,000 ج.س)</li>
+                        <li>حل مشكلة بنكية (أرباح الشركة 30,000 ج.س × 50% = 15,000 ج.س)</li>
+                    </ul>
+                    <p><strong>إجمالي ربحك:</strong> 70,000 + 10,000 + 15,000 = <strong>95,000 جنيه سوداني</strong></p>
+                    <p>+ إذا كانت هذه أول عملية لك: <strong>+10,000 جنيه مكافأة</strong></p>
+                    <p><strong>الإجمالي النهائي: 105,000 جنيه سوداني</strong></p>
+                </div>
+                
+                <div class="step-highlight" style="margin-top: 30px; background: rgba(212, 175, 55, 0.1); border-right: 4px solid var(--warning);">
+                    <h4 style="color: var(--warning); margin-bottom: 15px;">💡 ملحوظة هامة جداً:</h4>
+                    <p><strong>نظام العمولات لدينا مرن جداً!</strong> تستطيع:</p>
+                    <ul>
+                        <li>إضافة عمولة فوق العمولات الأساسية المذكورة</li>
+                        <li>التفاوض في السعر مع العميل <strong>نزولاً وصعوداً</strong></li>
+                        <li>تحديد سعرك الخاص بناءً على ظروف السوق والعميل</li>
+                        <li>الربح من الفرق بين السعر الرسمي وسعر البيع للعميل</li>
+                    </ul>
+                    <p><strong>مثال:</strong> إذا كان سعر الكورس الرسمي 300,000 ج.س، يمكنك بيعه بـ 350,000 ج.س وتحصل على الفرق + العمولة!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq" class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>❓ الأسئلة الشائعة</h2>
+                    <p>إجابات على أكثر الأسئلة التي ترد من المسوقين الجدد</p>
+                </div>
+                
+                <div class="faq-container">
+                    <!-- FAQ 1 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            هل أحتاج إلى خبرة سابقة في التسويق؟
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <strong>لا، لا تحتاج إلى أي خبرة سابقة.</strong> نحن نقدم لك:
+                            <ul>
+                                <li>تدريب كامل على جميع الخدمات</li>
+                                <li>نصوص إعلانية جاهزة يمكنك نسخها ولصقها</li>
+                                <li>صور وإعلانات مصممة بشكل احترافي</li>
+                                <li>دعم مستمر للإجابة على جميع أسئلتك</li>
+                                <li>مجموعة واتساب للمسوقين للاستفادة من تجارب الآخرين</li>
+                            </ul>
+                            كل ما تحتاجه هو الرغبة في العمل والالتزام.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 2 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            كيف أحصل على المواد التسويقية؟
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            بعد التسجيل، ستتلقى حزمة كاملة من المواد التسويقية عبر الواتساب أو التليجرام، تشمل:
+                            <ul>
+                                <li>مجموعة من النصوص الإعلانية لجميع الخدمات</li>
+                                <li>صور وإعلانات جاهزة للنشر</li>
+                                <li>شعارات Dragon Crypto</li>
+                                <li>دليل شامل لكيفية التسويق لكل خدمة</li>
+                            </ul>
+                            يمكنك أيضاً طلب مواد إضافية في أي وقت عبر مراسلتنا على الواتساب.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 3 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            متى أحصل على عمولتي وكيف؟
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <strong>الدفع فوري بعد إتمام الصفقة!</strong>
+                            <ul>
+                                <li>بعد إتمام العملية مع العميل، يتم إعلامك فوراً</li>
+                                <li>تحصل على عمولتك خلال 24 ساعة كحد أقصى</li>
+                                <li>طرق الدفع: حوالة بنكية أو USDT حسب رغبتك</li>
+                                <li>ما في حد أدنى للسحب، حتى لو كانت عمولتك 5,000 جنيه فقط</li>
+                                <li>نظام الدفع شفاف، يمكنك متابعة جميع عملياتك</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 4 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ماذا أفعل إذا لم أتمكن من إقناع عميل محتمل؟
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            هذه حالة طبيعية تحدث مع جميع المسوقين، وإليك الحل:
+                            <ul>
+                                <li>يجب عليك <strong>شرح الخدمة للعميل</strong> بشكل مفصل أولاً</li>
+                                <li>أجب على جميع أسئلة واستفسارات العميل</li>
+                                <li>حاول إقناعه وجعله <strong>مستعداً للدفع</strong></li>
+                                <li>بعد ذلك، يمكنك إرسال العميل إلينا لإتمام عملية الدفع</li>
+                                <li>إذا اشتري العميل، تحصل على عمولتك كاملة</li>
+                            </ul>
+                            تذكر: لا يوجد مسوق ينجح مع 100% من العملاء، المهم هو الاستمرار.
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 5 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            كيف يمكنني تطوير نفسي وزيادة عمولاتي؟
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <strong>خطة التطور الناجحة:</strong>
+                            <ol>
+                                <li><strong>التخصص:</strong> ركز على خدمة أو خدمتين تتفوق فيهما</li>
+                                <li><strong>التعلم المستمر:</strong> استمع لتجارب المسوقين الناجحين في مجموعتنا</li>
+                                <li><strong>بناء الفريق:</strong> كل مسوق تجيبه تحتك = 10% من عمولاته مدى الحياة</li>
+                                <li><strong>تحليل النتائج:</strong> حدد أي الخدمات تبيع أكثر، وأي الأوقات أفضل للبيع</li>
+                                <li><strong>خدمة العملاء:</strong> العميل السعيد يجلب 3 عملاء جدد في المتوسط</li>
+                            </ol>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 6 -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            ما هي ساعات العمل والدعم الفني؟
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <strong>ساعات العمل الرسمية:</strong>
+                            <ul>
+                                <li>من 9 صباحاً إلى 9 مساءاً</li>
+                                <li>يمكنك التسويق في أي وقت يناسبك (24/7)</li>
+                                <li>الدعم الفني متاح خلال ساعات العمل الرسمية</li>
+                                <li>مجموعة المسوقين على الواتساب نشطة دائماً للاستفادة من تجارب الآخرين</li>
+                                <li>لا تتردد في التواصل معنا في أي وقت لأي استفسار</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- FAQ 7 (New) -->
+                    <div class="faq-item">
+                        <div class="faq-question">
+                            إذا تمت اتهامات بالنصب أو الاحتيال وعدم الضمان؟
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <strong>نحن شركة موثوقة ولدينا سجل حافل بالنجاحات:</strong>
+                            <ul>
+                                <li>لدينا أكثر من 500 مسوق نشط يعملون معنا</li>
+                                <li>تم إنجاز آلاف العمليات الناجحة</li>
+                                <li>نقدم ضمانات كاملة على جميع خدماتنا</li>
+                                <li>يمكنك التواصل مع مسوقين سابقين للتحقق من مصداقيتنا</li>
+                            </ul>
+                            <p><strong>لرؤية بوست المصداقية والأدلة:</strong></p>
+                            <a href="https://www.facebook.com/share/p/17n1hXh6ka/?mibextid=oFDknk" class="copy-btn" style="display: inline-block; margin-top: 10px;" target="_blank">
+                                <i class="fab fa-facebook"></i> اضغط هنا لمشاهدة بوست المصداقية
+                            </a>
+                            <p style="margin-top: 15px;">أو تواصل معنا مباشرة على الواتساب لترى شهادات العملاء السابقين وأدلة النجاح.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Links Section -->
+        <section class="section">
+            <div class="container">
+                <div class="section-title">
+                    <h2>🔗 روابط مهمة للمسوقين</h2>
+                    <p>جميع الروابط التي تحتاجها للتواصل والتعلم والعمل مع Dragon Crypto</p>
+                </div>
+                
+                <div class="links-section">
+                    <div class="links-grid">
+                        <!-- Link 1 -->
+                        <div class="link-card">
+                            <div class="link-icon">
+                                <i class="fab fa-whatsapp"></i>
+                            </div>
+                            <h3>مجموعة الإعلانات العامة</h3>
+                            <p>للبقاء على اطلاع بجميع العروض والخدمات الجديدة</p>
+                            <a href="https://chat.whatsapp.com/DxaKydHBwvq8yZF235P8T3" class="link-btn" target="_blank">
+                                انضم الآن
+                            </a>
+                        </div>
+                        
+                        <!-- Link 2 -->
+                        <div class="link-card">
+                            <div class="link-icon">
+                                <i class="fas fa-comments"></i>
+                            </div>
+                            <h3>مجموعة النقاش المفتوحة</h3>
+                            <p>للنقاش وتبادل الخبرات مع المسوقين الآخرين</p>
+                            <a href="https://chat.whatsapp.com/EjGxLVQZD94AmxM9OZfD0z" class="link-btn" target="_blank">
+                                انضم للنقاش
+                            </a>
+                        </div>
+                        
+                        <!-- Link 3 -->
+                        <div class="link-card">
+                            <div class="link-icon">
+                                <i class="fab fa-facebook"></i>
+                            </div>
+                            <h3>صفحة الفيسبوك الرسمية</h3>
+                            <p>تابعنا على فيسبوك لأحدث الأخبار والعروض</p>
+                            <a href="https://www.facebook.com/share/1KRQ1YqfTU/?mibextid=qi2Omg" class="link-btn" target="_blank">
+                                زر الصفحة
+                            </a>
+                        </div>
+                        
+                        <!-- Link 4 -->
+                        <div class="link-card">
+                            <div class="link-icon">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <h3>كورس التسويق الاحترافي</h3>
+                            <p>كورس مقدم من مسوقتنا المتميزة رماز السيد</p>
+                            <a href="https://t.me/Electronic_marketing0" class="link-btn" target="_blank">
+                                شاهد الكورس
+                            </a>
+                        </div>
+                        
+                        <!-- Link 5 -->
+                        <div class="link-card">
+                            <div class="link-icon">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <h3>الدعم الفني المباشر</h3>
+                            <p>للتواصل مع الدعم الفني واستفسارات التسجيل</p>
+                            <a href="https://wa.me/249906361815" class="link-btn" target="_blank">
+                                تواصل مع الدعم
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <div class="step-highlight" style="margin-top: 40px; text-align: center;">
+                        <h3 style="color: var(--primary); margin-bottom: 15px;">📞 تواصل معنا الآن وابدأ العمل!</h3>
+                        <p style="font-size: 18px; line-height: 1.8;">
+                            الانضمام إلى Dragon Crypto يعني الانضمام إلى عائلة من الناجحين. 
+                            نحن نضمن لك <strong>تدريباً كاملاً، دعم مستمر، وربح مضمون</strong>.
+                        </p>
+                        <a href="https://goodmsabjjjj-coder.github.io/DragonCrypto-/" class="registration-btn" target="_blank" style="padding: 15px 30px; font-size: 18px; margin-top: 20px; display: inline-block;">
+                            <i class="fas fa-user-plus"></i> التسجيل والانضمام الآن
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Dragon Crypto</h3>
+                    <p style="color: var(--text-light); line-height: 1.7; font-size: 14px;">
+                        🐉 منصة الخدمات الرقمية الشاملة الأولى في السودان والعالم العربي. 
+                        نقدم فرص ربح حقيقية في عالم التسويق الرقمي مع دعم مستمر وضمانات كاملة.
                     </p>
                 </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-home"></i> الرئيسية</a></li>
+                        <li><a href="#learning-path"><i class="fas fa-graduation-cap"></i> الدليل الشامل</a></li>
+                        <li><a href="#services-detailed"><i class="fas fa-cogs"></i> الخدمات والعمولات</a></li>
+                        <li><a href="#faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+                        <li><a href="https://goodmsabjjjj-coder.github.io/DragonCrypto-/" target="_blank"><i class="fas fa-user-plus"></i> التسجيل</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://wa.me/249906361815"><i class="fab fa-whatsapp"></i> واتساب الدعم</a></li>
+                        <li><a href="https://t.me/Electronic_marketing0"><i class="fab fa-telegram"></i> قناة التسويق</a></li>
+                        <li><a href="https://chat.whatsapp.com/ELFZlZ95VxRI3BcRuSFhM4"><i class="fab fa-whatsapp"></i> مجموعة المسوقين</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>معلومات مهمة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showInfo('الدفع يكون خلال 24 ساعة كحد أقصى بعد إتمام الصفقة، عبر حوالة بنكية أو USDT حسب رغبتك.')"><i class="fas fa-money-bill-wave"></i> مواعيد الدفع</a></li>
+                        <li><a href="#" onclick="showInfo('ساعات العمل الرسمية: من 9 صباحاً إلى 9 مساءاً. الدعم الفني متاح خلال هذه الساعات.')"><i class="fas fa-clock"></i> ساعات العمل</a></li>
+                        <li><a href="#" onclick="showInfo('جميع المواد التسويقية مجانية تماماً ونوفرها لك فور تسجيلك كمسوق معنا.')"><i class="fas fa-download"></i> المواد المجانية</a></li>
+                    </ul>
+                </div>
             </div>
             
-            <button class="btn-join" onclick="validateAndRegister()">
-                <i class="fas fa-paper-plane"></i> إرسال البيانات وتفعيل الحساب
-            </button>
-            
-            <p style="text-align: center; margin-top: 20px; font-size: 0.85rem; color: #aaa;">
-                <i class="fas fa-lock"></i> جميع بياناتك محمية وسرية ولا تتم مشاركتها مع أي جهة خارجية
-            </p>
-        </div>
-
-    </div>
-
-    <!-- قسم روابط التواصل والقنوات الرسمية -->
-    <div class="contact-links animate__animated animate__fadeInUp">
-        <h2>📞 روابط التواصل الرسمية</h2>
-        <div class="links-grid">
-            <div class="link-card">
-                <div class="link-icon">
-                    <i class="fab fa-whatsapp"></i>
-                </div>
-                <h3 class="link-title">قناة العروض الحصرية</h3>
-                <p class="link-desc">انضم لقناتنا الرسمية على الواتساب لتكون أول من يعرف عن العروض والتحديثات الجديدة.</p>
-                <a href="https://chat.whatsapp.com/DxaKydHBwvq8yZF235P8T3" target="_blank" class="btn-link whatsapp-link">
-                    <i class="fab fa-whatsapp"></i> انضم الآن
-                </a>
-            </div>
-            
-            <div class="link-card">
-                <div class="link-icon">
-                    <i class="fas fa-comments"></i>
-                </div>
-                <h3 class="link-title">مجتمع المناقشة المفتوحة</h3>
-                <p class="link-desc">شارك في النقاشات مع فريقنا والمجتمع، اسأل واستفسر وشارك تجاربك مع المسوقين الآخرين.</p>
-                <a href="https://chat.whatsapp.com/ELFZlZ95VxRI3BcRuSFhM4" target="_blank" class="btn-link whatsapp-link">
-                    <i class="fas fa-comments"></i> انضم للمجتمع
-                </a>
-            </div>
-            
-            <div class="link-card">
-                <div class="link-icon">
-                    <i class="fab fa-facebook"></i>
-                </div>
-                <h3 class="link-title">صفحتنا على الفيسبوك</h3>
-                <p class="link-desc">تابعنا على فيسبوك لمعرفة آخر أخبارنا وشاهد محتوانا الحصري والتعرف على المزيد من المسوقين.</p>
-                <a href="https://www.facebook.com/share/1LjvTsiuU4/?mibextid=qi2Omg" target="_blank" class="btn-link facebook-link">
-                    <i class="fab fa-facebook"></i> تابعنا على فيسبوك
-                </a>
-            </div>
-            
-            <div class="link-card">
-                <div class="link-icon">
-                    <i class="fas fa-headset"></i>
-                </div>
-                <h3 class="link-title">الدعم الفني المباشر</h3>
-                <p class="link-desc">لديك استفسار أو تحتاج مساعدة؟ فريق الدعم جاهز للرد على استفساراتك على مدار الساعة.</p>
-                <a href="https://wa.me/249906361815" target="_blank" class="btn-link support-link">
-                    <i class="fab fa-whatsapp"></i> تواصل مع الدعم
-                </a>
-            </div>
-            
-            <!-- كورس التسويق الإلكتروني -->
-            <div class="link-card course-card">
-                <div class="link-icon">
-                    <i class="fab fa-telegram"></i>
-                </div>
-                <h3 class="link-title">كورس التسويق الإلكتروني</h3>
-                <div class="course-instructor">
-                    <i class="fas fa-user-graduate"></i>
-                    <span>مقدمة من: مسوقتنا المتميزة رماز السيد</span>
-                </div>
-                <p class="link-desc">كورس متكامل لتعلم أساسيات التسويق الإلكتروني، استراتيجيات النجاح، وكيفية تحقيق أرباح حقيقية في المجال الرقمي.</p>
-                <a href="https://t.me/Electronic_marketing0" target="_blank" class="btn-link telegram-link">
-                    <i class="fab fa-telegram"></i> انضم للكورس على التليجرام
-                </a>
+            <div class="footer-bottom">
+                <p>© <span id="currentYear">2024</span> Dragon Crypto. كل الحقوق محفوظة لمنصة الخدمات الرقمية.</p>
+                <p style="font-size: 12px; margin-top: 10px; color: var(--gray);">
+                    🐉 صنع بكل فخر للسودان والعالم العربي | تصميم وتطوير متكامل
+                </p>
             </div>
         </div>
-    </div>
-
-    <!-- نافذة التنبيه المخصصة -->
-    <div class="custom-alert" id="customAlert">
-        <div class="alert-content">
-            <h3>⚠️ تنبيه هام!</h3>
-            <p>سيتم الآن إرسال طلب التسجيل مع عرض كلمة السر الخاصة بك في رسالة الواتساب.</p>
-            <p><strong>تنبيه:</strong> كلمة السر ستكون ظاهرة في الرسالة. احفظ الرسالة في مكان آمن ولا تشاركها مع أي شخص.</p>
-            
-            <div class="password-display" id="passwordDisplay"></div>
-            
-            <p>هل تريد المتابعة وإرسال الطلب؟</p>
-            
-            <div class="alert-buttons">
-                <button class="alert-btn cancel" onclick="closeAlert()">إلغاء</button>
-                <button class="alert-btn confirm" onclick="sendRegistration()">نعم، أرسل الطلب</button>
-            </div>
-        </div>
-    </div>
-
-    <footer>
-        <p>© 2026 DRAGON CRYPTO GROUP</p>
-        <p>السيادة الرقمية | Omdurman, Sudan</p>
     </footer>
 
     <script>
-        // متغيرات عامة لتخزين البيانات قبل الإرسال
-        let registrationData = {};
-        
-        // إظهار/إخفاء حقل المسوق التابع
-        function toggleAffiliateField(isAffiliate) {
-            const affiliateField = document.getElementById("affiliateField");
-            const affiliateNameInput = document.getElementById("affiliate_name");
-            const affiliateError = document.getElementById("affiliateError");
+        document.addEventListener('DOMContentLoaded', function() {
+            // تحديث السنة
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
             
-            if (isAffiliate) {
-                affiliateField.classList.add("show");
-                affiliateNameInput.required = true;
-                affiliateError.classList.remove("show");
-            } else {
-                affiliateField.classList.remove("show");
-                affiliateNameInput.required = false;
-                affiliateError.classList.remove("show");
-                affiliateNameInput.value = ""; // مسح القيمة عند الاختيار "لا"
+            // إعداد القائمة المتنقلة
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
+            
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+            
+            // إغلاق القائمة عند النقر على رابط
+            document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
+            });
+            
+            // إعداد FAQ
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+                    
+                    // إغلاق جميع الإجابات الأخرى
+                    document.querySelectorAll('.faq-answer').forEach(item => {
+                        if (item !== answer && item.classList.contains('active')) {
+                            item.classList.remove('active');
+                            item.previousElementSibling.querySelector('i').classList.remove('fa-chevron-up');
+                            item.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
+                        }
+                    });
+                    
+                    // تبديل الحالة الحالية
+                    answer.classList.toggle('active');
+                    if (answer.classList.contains('active')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+            
+            // إعداد أزرار النسخ
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const text = this.getAttribute('data-text');
+                    if (!text) return; // إذا لم يكن هناك نص للنسخ
+                    
+                    navigator.clipboard.writeText(text).then(() => {
+                        showToast('تم النسخ بنجاح!', 'تم نسخ النص إلى الحافظة، يمكنك لصقه الآن.');
+                        
+                        // تغيير مظهر الزر مؤقتاً
+                        const originalHTML = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check"></i> تم النسخ!';
+                        this.style.background = 'var(--success)';
+                        this.style.borderColor = 'var(--success)';
+                        this.style.color = 'white';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalHTML;
+                            this.style.background = '';
+                            this.style.borderColor = '';
+                            this.style.color = '';
+                        }, 2000);
+                    }).catch(err => {
+                        showToast('خطأ في النسخ', 'حدث خطأ أثناء نسخ النص.');
+                        console.error('فشل نسخ النص: ', err);
+                    });
+                });
+            });
+            
+            // إعداد التنقل النشط
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu-links a');
+            
+            function setActiveLink() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
             }
-        }
-        
-        // إخفاء حقل المسوق التابع افتراضيًا
-        document.addEventListener("DOMContentLoaded", function() {
-            toggleAffiliateField(false);
             
-            // اختيار "لا" افتراضيًا
-            document.querySelector('input[name="affiliate"][value="no"]').checked = true;
+            window.addEventListener('scroll', setActiveLink);
             
-            // تعيين التاريخ الأدنى لتاريخ الميلاد (18 سنة من الآن)
-            const today = new Date();
-            const minDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-            const maxDate = new Date(today.getFullYear() - 100, today.getMonth(), today.getDate());
+            // إعداد التنقل السلس
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
             
-            document.getElementById('birth_date').max = minDate.toISOString().split('T')[0];
-            document.getElementById('birth_date').min = maxDate.toISOString().split('T')[0];
+            // إعداد Toast
+            const toast = document.getElementById('toast');
+            const toastClose = document.getElementById('toastClose');
+            let toastTimeout;
             
-            // إضافة مستمع لكلمة السر لقياس قوتها
-            document.getElementById('withdrawal_password').addEventListener('input', function() {
-                checkPasswordStrength(this.value);
+            window.showToast = function(title, message) {
+                document.getElementById('toastTitle').textContent = title;
+                document.getElementById('toastMessage').textContent = message;
+                
+                toast.classList.add('show');
+                
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 5000);
+            };
+            
+            toastClose.addEventListener('click', () => {
+                toast.classList.remove('show');
+                clearTimeout(toastTimeout);
             });
         });
         
-        // دالة التحقق من قوة كلمة السر
-        function checkPasswordStrength(password) {
-            const strengthBar = document.getElementById('passwordStrength');
-            
-            if (password.length === 0) {
-                strengthBar.className = 'password-strength';
-                return;
-            }
-            
-            let strength = 0;
-            
-            // التحقق من الطول
-            if (password.length >= 8) strength++;
-            
-            // التحقق من وجود حروف كبيرة وصغيرة
-            if (/[a-z]/.test(password) && /[A-Z]/.test(password)) strength++;
-            
-            // التحقق من وجود أرقام
-            if (/\d/.test(password)) strength++;
-            
-            // التحقق من وجود رموز خاصة
-            if (/[^A-Za-z0-9]/.test(password)) strength++;
-            
-            // تحديث شريط القوة
-            strengthBar.className = 'password-strength';
-            
-            if (strength === 1) {
-                strengthBar.classList.add('password-weak');
-            } else if (strength === 2 || strength === 3) {
-                strengthBar.classList.add('password-medium');
-            } else if (strength === 4) {
-                strengthBar.classList.add('password-strong');
-            }
+        // دالة لعرض معلومات إضافية
+        function showInfo(message) {
+            showToast('💎 معلومة مهمة', message);
         }
-        
-        // التحقق من صحة النموذج
-        function validateForm() {
-            let isValid = true;
-            
-            // إخفاء جميع رسائل الخطأ
-            document.querySelectorAll('.validation-error').forEach(error => {
-                error.classList.remove('show');
-            });
-            
-            // التحقق من الحقول الإلزامية
-            const requiredFields = [
-                { id: 'full_name', error: 'nameError' },
-                { id: 'phone', error: 'phoneError' },
-                { id: 'email', error: 'emailError' },
-                { id: 'national_id', error: 'nationalIdError' },
-                { id: 'birth_date', error: 'birthDateError' },
-                { id: 'social_link', error: 'socialLinkError' },
-                { id: 'exp_level', error: 'expError' },
-                { id: 'withdrawal_password', error: 'passwordError' },
-                { id: 'pay_method', error: 'payMethodError' }
-            ];
-            
-            requiredFields.forEach(field => {
-                const input = document.getElementById(field.id);
-                const error = document.getElementById(field.error);
-                
-                if (!input.value.trim()) {
-                    error.classList.add('show');
-                    isValid = false;
-                }
-            });
-            
-            // التحقق من البريد الإلكتروني
-            const email = document.getElementById('email').value;
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (email && !emailRegex.test(email)) {
-                document.getElementById('emailError').textContent = 'البريد الإلكتروني غير صحيح';
-                document.getElementById('emailError').classList.add('show');
-                isValid = false;
-            }
-            
-            // التحقق من كلمة السر
-            const password = document.getElementById('withdrawal_password').value;
-            if (password && password.length < 8) {
-                document.getElementById('passwordError').classList.add('show');
-                isValid = false;
-            }
-            
-            // التحقق من المسوق التابع
-            const affiliateYes = document.querySelector('input[name="affiliate"][value="yes"]').checked;
-            const affiliateName = document.getElementById('affiliate_name').value;
-            
-            if (affiliateYes && !affiliateName.trim()) {
-                document.getElementById('affiliateError').classList.add('show');
-                isValid = false;
-            }
-            
-            return isValid;
-        }
-        
-        // دالة لإغلاق نافذة التنبيه
-        function closeAlert() {
-            document.getElementById('customAlert').style.display = 'none';
-        }
-        
-        // دالة التسجيل الرئيسية
-        function validateAndRegister() {
-            if (!validateForm()) {
-                alert("❗ الرجاء تعبئة جميع الحقول المطلوبة بشكل صحيح");
-                return;
-            }
-            
-            // جمع البيانات
-            registrationData = {
-                name: document.getElementById('full_name').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                nationalId: document.getElementById('national_id').value,
-                birthDate: document.getElementById('birth_date').value,
-                socialLink: document.getElementById('social_link').value,
-                exp: document.getElementById('exp_level').value,
-                password: document.getElementById('withdrawal_password').value,
-                pay: document.getElementById('pay_method').value,
-                affiliateYes: document.querySelector('input[name="affiliate"][value="yes"]').checked,
-                affiliateName: document.getElementById('affiliate_name').value
-            };
-            
-            // عرض كلمة السر في نافذة التنبيه
-            document.getElementById('passwordDisplay').textContent = registrationData.password;
-            document.getElementById('customAlert').style.display = 'flex';
-        }
-        
-        // دالة إرسال التسجيل النهائية
-        function sendRegistration() {
-            // إغلاق نافذة التنبيه
-            closeAlert();
-            
-            // تحديد نوع المسوق
-            let marketerType = "📌 مسوق مستقل";
-            if (registrationData.affiliateYes) {
-                marketerType = `📌 مسوق تابع عبر: ${registrationData.affiliateName}`;
-            }
-            
-            // تحويل تاريخ الميلاد إلى الميلادي بشكل مختصر
-            const birthDateObj = new Date(registrationData.birthDate);
-            const formattedBirthDate = `${birthDateObj.getFullYear()}/${String(birthDateObj.getMonth() + 1).padStart(2, '0')}/${String(birthDateObj.getDate()).padStart(2, '0')}`;
-            
-            // بناء نص الرسالة المختصر والاحترافي
-            const text = `*📋 طلب تسجيل مسوق جديد*%0a%0a` +
-                         `*الاسم:* ${registrationData.name}%0a` +
-                         `*الرقم الوطني:* ${registrationData.nationalId}%0a` +
-                         `*الميلاد:* ${formattedBirthDate}%0a` +
-                         `*الرقم:* ${registrationData.phone}%0a` +
-                         `*البريد:* ${registrationData.email}%0a` +
-                         `*الصفحة:* ${registrationData.socialLink}%0a` +
-                         `*الخبرة:* ${registrationData.exp}%0a` +
-                         `*الدفع:* ${registrationData.pay}%0a` +
-                         `*${marketerType}*%0a` +
-                         `*كلمة السر:* ${registrationData.password}%0a%0a` +
-                         `_تاريخ الطلب: ${new Date().toLocaleDateString('ar-SA')}_`;
+    </script>
+</body>
+</html>/div>
+            </div>
+        </section>
+    </main>
 
-            // إرسال البيانات إلى السيرفر
-            sendToServer(
-                registrationData.name,
-                registrationData.phone,
-                registrationData.email,
-                registrationData.nationalId,
-                formattedBirthDate,
-                registrationData.socialLink,
-                registrationData.exp,
-                registrationData.password,
-                registrationData.pay,
-                registrationData.affiliateYes ? 'yes' : 'no',
-                registrationData.affiliateName
-            );
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Dragon Crypto</h3>
+                    <p style="color: var(--text-light); line-height: 1.7; font-size: 14px;">
+                        🐉 منصة الخدمات الرقمية الشاملة الأولى في السودان والعالم العربي. 
+                        نقدم فرص ربح حقيقية في عالم التسويق الرقمي مع دعم مستمر وضمانات كاملة.
+                    </p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-home"></i> الرئيسية</a></li>
+                        <li><a href="#learning-path"><i class="fas fa-graduation-cap"></i> الدليل الشامل</a></li>
+                        <li><a href="https://goodmsabjjjj-coder.github.io/DragonCrypto-/" target="_blank"><i class="fas fa-user-plus"></i> التسجيل الإلكتروني</a></li>
+                        <li><a href="#faq"><i class="fas fa-question-circle"></i> الأسئلة الشائعة</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>تواصل معنا</h3>
+                    <ul class="footer-links">
+                        <li><a href="https://goodmsabjjjj-coder.github.io/DragonCrypto-/" target="_blank"><i class="fas fa-file-alt"></i> نموذج التسجيل</a></li>
+                        <li><a href="https://wa.me/249906361815"><i class="fab fa-whatsapp"></i> واتساب الدعم</a></li>
+                        <li><a href="https://t.me/Electronic_marketing0"><i class="fab fa-telegram"></i> قناة التسويق</a></li>
+                        <li><a href="https://chat.whatsapp.com/ELFZlZ95VxRI3BcRuSFhM4"><i class="fab fa-whatsapp"></i> مجموعة المسوقين</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>معلومات مهمة</h3>
+                    <ul class="footer-links">
+                        <li><a href="#" onclick="showInfo('الدفع يكون خلال 24 ساعة كحد أقصى بعد إتمام الصفقة، عبر حوالة بنكية أو USDT حسب رغبتك.')"><i class="fas fa-money-bill-wave"></i> مواعيد الدفع</a></li>
+                        <li><a href="#" onclick="showInfo('الدعم الفني متواصل خلال ساعات العمل الرسمية من 9 صباحاً إلى 9 مساءاً.')"><i class="fas fa-headset"></i> أوقات الدعم</a></li>
+                        <li><a href="#" onclick="showInfo('جميع المواد التسويقية مجانية تماماً ونوفرها لك فور تسجيلك كمسوق معنا.')"><i class="fas fa-download"></i> المواد المجانية</a></li>
+                    </ul>
+                </div>
+            </div>
             
-            // فتح رابط الواتساب
-            window.open(`https://wa.me/249906361815?text=${text}`, '_blank');
+            <div class="footer-bottom">
+                <p>© <span id="currentYear">2024</span> Dragon Crypto. كل الحقوق محفوظة لمنصة الخدمات الرقمية.</p>
+                <p style="font-size: 12px; margin-top: 10px; color: var(--gray);">
+                    🐉 صنع بكل فخر للسودان والعالم العربي | تصميم وتطوير متكامل
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('currentYear').textContent = new Date().getFullYear();
             
-            // عرض رسالة تأكيد مختصرة
-            setTimeout(() => {
-                alert("✅ تم إرسال الطلب بنجاح!\n\nسيتم التواصل معك قريباً.");
-            }, 500);
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileMenu = document.getElementById('mobileMenu');
             
-            // إعادة تعيين النموذج بعد 2 ثانية
-            setTimeout(() => {
-                if (confirm("هل تريد تعبئة نموذج تسجيل آخر؟")) {
-                    location.reload();
-                }
-            }, 2000);
-        }
-        
-        // دالة محاكاة لإرسال البيانات للسيرفر
-        function sendToServer(name, phone, email, nationalId, birthDate, socialLink, exp, password, pay, affiliateType, affiliateName) {
-            const data = {
-                full_name: name,
-                phone: phone,
-                email: email,
-                national_id: nationalId,
-                birth_date: birthDate,
-                social_link: socialLink,
-                experience: exp,
-                withdrawal_password: password,
-                payment_method: pay,
-                affiliate_type: affiliateType,
-                affiliate_name: affiliateType === 'yes' ? affiliateName : null,
-                commission_rate: 10,
-                registration_date: new Date().toISOString(),
-                status: 'pending'
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('active');
+            });
+            
+            document.querySelectorAll('.mobile-menu-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    mobileMenu.classList.remove('active');
+                });
+            });
+            
+            const faqQuestions = document.querySelectorAll('.faq-question');
+            faqQuestions.forEach(question => {
+                question.addEventListener('click', () => {
+                    const answer = question.nextElementSibling;
+                    const icon = question.querySelector('i');
+                    
+                    document.querySelectorAll('.faq-answer').forEach(item => {
+                        if (item !== answer && item.classList.contains('active')) {
+                            item.classList.remove('active');
+                            item.previousElementSibling.querySelector('i').classList.remove('fa-chevron-up');
+                            item.previousElementSibling.querySelector('i').classList.add('fa-chevron-down');
+                        }
+                    });
+                    
+                    answer.classList.toggle('active');
+                    if (answer.classList.contains('active')) {
+                        icon.classList.remove('fa-chevron-down');
+                        icon.classList.add('fa-chevron-up');
+                    } else {
+                        icon.classList.remove('fa-chevron-up');
+                        icon.classList.add('fa-chevron-down');
+                    }
+                });
+            });
+            
+            const copyButtons = document.querySelectorAll('.copy-btn');
+            copyButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const text = this.getAttribute('data-text');
+                    if (!text) return;
+                    
+                    navigator.clipboard.writeText(text).then(() => {
+                        showToast('تم النسخ بنجاح!', 'تم نسخ النص إلى الحافظة، يمكنك لصقه الآن.');
+                        
+                        const originalHTML = this.innerHTML;
+                        this.innerHTML = '<i class="fas fa-check"></i> تم النسخ!';
+                        this.style.background = 'var(--success)';
+                        this.style.borderColor = 'var(--success)';
+                        this.style.color = 'white';
+                        
+                        setTimeout(() => {
+                            this.innerHTML = originalHTML;
+                            this.style.background = '';
+                            this.style.borderColor = '';
+                            this.style.color = '';
+                        }, 2000);
+                    }).catch(err => {
+                        showToast('خطأ في النسخ', 'حدث خطأ أثناء نسخ النص.');
+                        console.error('فشل نسخ النص: ', err);
+                    });
+                });
+            });
+            
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu-links a');
+            
+            function setActiveLink() {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    if (window.scrollY >= (sectionTop - 150)) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href') === `#${current}`) {
+                        link.classList.add('active');
+                    }
+                });
+            }
+            
+            window.addEventListener('scroll', setActiveLink);
+            
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            const toast = document.getElementById('toast');
+            const toastClose = document.getElementById('toastClose');
+            let toastTimeout;
+            
+            window.showToast = function(title, message) {
+                document.getElementById('toastTitle').textContent = title;
+                document.getElementById('toastMessage').textContent = message;
+                
+                toast.classList.add('show');
+                
+                clearTimeout(toastTimeout);
+                toastTimeout = setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 5000);
             };
             
-            console.log('📤 إرسال البيانات للسيرفر:', data);
-            
-            // هنا يمكنك إضافة كود AJAX لإرسال البيانات إلى السيرفر الحقيقي
-            // fetch('your-api-endpoint', {
-            //     method: 'POST',
-            //     headers: { 'Content-Type': 'application/json' },
-            //     body: JSON.stringify(data)
-            // })
+            toastClose.addEventListener('click', () => {
+                toast.classList.remove('show');
+                clearTimeout(toastTimeout);
+            });
+        });
+        
+        function showInfo(message) {
+            showToast('💎 معلومة مهمة', message);
         }
     </script>
 </body>
