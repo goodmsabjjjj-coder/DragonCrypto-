@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>دراجون بوت برو 🐉 | المسوق الذكي</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        /* reset و المتغيرات */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Tajawal', sans-serif;
+        }
+
+        body {
+            background-color: #0b0e12;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            background-image: 
+                radial-gradient(circle at 20% 30%, rgba(255, 215, 0, 0.02) 0%, transparent 25%),
+                radial-gradient(circle at 90% 70%, rgba(0, 255, 128, 0.02) 0%, transparent 25%);
+        }
+
+        :root {
+            --gold: #FFD700;
+            --gold-dark: #b8860b;
+            --green: #00E676;
+            --dark-bg: #12171f;
+            --panel-bg: #1a212b;
+            --border-light: #2e3b48;
+            --glow: 0 0 15px rgba(255, 215, 0, 0.3);
+        }
+
+        /* شريط إحصائيات متحرك */
+        .stats-marquee {
+            background: linear-gradient(90deg, #1f2a35, #0f1a24);
+            border-bottom: 1px solid #f0b90b30;
+            padding: 8px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        .stats-marquee span {
+            display: inline-block;
+            margin-left: 30px;
+        }
+        .stats-marquee i {
+            color: var(--gold);
+            margin-left: 6px;
+        }
+        .stats-marquee .value {
+            color: white;
+            font-weight: 700;
+            margin-left: 4px;
+        }
+
+        /* الهيدر */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 25px;
+            background: rgba(10, 15, 20, 0.98);
+            border-bottom: 2px solid var(--gold-dark);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 900;
+            background: linear-gradient(135deg, #FFD700, #FFF0B5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .logo i {
+            color: var(--gold);
+            -webkit-text-fill-color: initial;
+            filter: drop-shadow(0 0 8px gold);
+        }
+        .badge {
+            background: rgba(0, 230, 118, 0.12);
+            border: 1px solid var(--green);
+            border-radius: 40px;
+            padding: 6px 16px;
+            color: var(--green);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 0 10px #00E67630;
+        }
+        .badge .dot {
+            width: 10px; height: 10px;
+            background: var(--green);
+            border-radius: 50%;
+            animation: pulse 1.6s infinite;
+        }
+        @keyframes pulse { 0% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        /* الحاوية الرئيسية */
+        .main-container {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 125px);
+            max-width: 1600px;
+            margin: 0 auto;
+            width: 100%;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        /* قسم المحادثة */
+        .chat-section {
+            flex: 1.1;
+            background: var(--panel-bg);
+            border-radius: 32px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 40px #00000080;
+            backdrop-filter: blur(2px);
+        }
+        .chat-header {
+            padding: 18px 22px;
+            background: #1e2937;
+            border-bottom: 1px solid #3e5062;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .chat-header i { color: var(--gold); font-size: 1.5rem; }
+        .chat-messages {
+            flex: 1;
+            overflow-y: auto;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            scroll-behavior: smooth;
+        }
+        .message {
+            display: flex;
+            align-items: flex-end;
+            gap: 12px;
+            max-width: 96%;
+            animation: slideUp 0.3s ease;
+        }
+        .bot-message { align-self: flex-start; }
+        .user-message { align-self: flex-end; flex-direction: row-reverse; }
+        .avatar {
+            width: 44px; height: 44px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; flex-shrink: 0;
+            border: 2px solid transparent;
+        }
+        .bot-avatar {
+            background: linear-gradient(145deg, #e5b13b, #b37b2e);
+            color: #0a0f14;
+            border-color: #fff0b5;
+            box-shadow: 0 0 20px gold;
+        }
+        .user-avatar {
+            background: #1b2a36;
+            color: var(--green);
+            border-color: var(--green);
+            box-shadow: 0 0 15px #00E67650;
+        }
+        .bubble {
+            padding: 18px 24px;
+            border-radius: 24px;
+            font-size: 1rem;
+            line-height: 1.7;
+            word-break: break-word;
+            box-shadow: 0 10px 20px #00000050;
+        }
+        .bot-message .bubble {
+            background: #1e2a37;
+            border: 1px solid #4f657b;
+            border-bottom-right-radius: 24px;
+            border-bottom-left-radius: 8px;
+        }
+        .user-message .bubble {
+            background: linear-gradient(145deg, #1b3a2e, #123127);
+            border: 1px solid #2e9e5e;
+            border-bottom-left-radius: 24px;
+            border-bottom-right-radius: 8px;
+            color: #f0fff0;
+        }
+        .typing-indicator {
+            background: #1e2e3b;
+            padding: 12px 20px;
+            border-radius: 30px;
+            display: none;
+            width: fit-content;
+            margin-right: 60px;
+            margin-top: -12px;
+            border: 1px solid #4f6b7c;
+        }
+        .dot-typing {
+            width: 8px; height: 8px; background: gold;
+            border-radius: 50%; display: inline-block;
+            margin: 0 3px; animation: wave 1.2s infinite;
+        }
+        .dot-typing:nth-child(2) { animation-delay: 0.2s; }
+        .dot-typing:nth-child(3) { animation-delay: 0.4s; }
+        @keyframes wave { 0%,60%,100% { transform: translateY(0); } 30% { transform: translateY(-8px); } }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+
+        .input-disabled {
+            background: #0e151f;
+            padding: 16px;
+            text-align: center;
+            border-top: 1px solid #2f4055;
+            color: #aaa;
+            font-size: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        /* قسم التحكم (التصنيفات والأسئلة) */
+        .controls-section {
+            flex: 1.4;
+            background: var(--panel-bg);
+            border-radius: 32px;
+            border: 1px solid var(--border-light);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 20px 40px #00000080;
+        }
+        .categories-nav {
+            display: flex;
+            gap: 12px;
+            padding: 18px 22px;
+            overflow-x: auto;
+            background: #18212b;
+            border-bottom: 2px solid #2d3f52;
+            scrollbar-width: thin;
+            scrollbar-color: gold #2d3f52;
+        }
+        .categories-nav::-webkit-scrollbar { height: 5px; }
+        .categories-nav::-webkit-scrollbar-thumb { background: gold; border-radius: 10px; }
+        .cat-btn {
+            background: #253746;
+            color: #e0f0ff;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            white-space: nowrap;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            border: 1px solid #4b6072;
+        }
+        .cat-btn i { color: gold; }
+        .cat-btn.active {
+            background: linear-gradient(145deg, #f5c542, #e0ac0e);
+            color: #0a1017;
+            border-color: #fff3b0;
+            box-shadow: 0 5px 20px gold;
+        }
+        .cat-btn.active i { color: #000; }
+        .questions-grid {
+            padding: 22px;
+            overflow-y: auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            gap: 16px;
+            align-content: start;
+        }
+        .q-btn {
+            background: linear-gradient(145deg, #1e2b38, #18222d);
+            border: 1px solid #40586e;
+            color: #f0faff;
+            padding: 20px 16px;
+            border-radius: 22px;
+            cursor: pointer;
+            transition: all 0.25s;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 500;
+            line-height: 1.4;
+            box-shadow: 0 8px 12px #00000060;
+        }
+        .q-btn:hover {
+            border-color: gold;
+            transform: translateY(-5px) scale(1.02);
+            background: #1f3243;
+            box-shadow: 0 20px 25px #000000b0, 0 0 15px gold;
+        }
+        .q-btn i {
+            color: gold;
+            margin-left: 15px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* تنسيق الردود (جداول، قوائم، اقتباسات) */
+        .bubble table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 12px 0;
+            font-size: 0.95rem;
+            background: #1d2c3a;
+            border-radius: 16px;
+            overflow: hidden;
+        }
+        .bubble th {
+            background: #b88c1f;
+            color: #000;
+            font-weight: 800;
+            padding: 8px;
+        }
+        .bubble td {
+            padding: 8px;
+            border-bottom: 1px solid #4c6175;
+        }
+        .bubble tr:last-child td { border-bottom: none; }
+        .bubble .highlight { color: gold; font-weight: 700; }
+        .bubble .green { color: #00E676; font-weight: 700; }
+        .bubble ul { margin-right: 20px; list-style-type: '✅ '; }
+        .bubble li { margin: 6px 0; padding-right: 8px; }
+        .quote-box {
+            background: #1c3140;
+            border-right: 5px solid gold;
+            padding: 14px 18px;
+            border-radius: 14px;
+            margin: 15px 0;
+            font-style: italic;
+            color: #ddd;
+            font-size: 1rem;
+        }
+
+        /* تحسينات للجوال */
+        @media (max-width: 992px) {
+            .main-container { flex-direction: column; height: auto; }
+            .chat-section { flex: none; height: 50vh; }
+            .controls-section { flex: none; height: auto; max-height: 70vh; }
+        }
+    </style>
+</head>
+<body>
+    <div class="stats-marquee">
+        <span><i class="fas fa-users"></i> المسوقين النشطين: <span class="value">2,540+</span></span>
+        <span><i class="fas fa-coins"></i> إجمالي العمولات المدفوعة: <span class="value">₿ 126M</span></span>
+        <span><i class="fas fa-bolt"></i> سرعة التنفيذ: <span class="value">⏱️ 8 دقائق</span></span>
+        <span><i class="fas fa-gift"></i> عرض اليوم: <span class="value">عمولة 100% لأول 10 مسوقين</span></span>
+        <span><i class="fas fa-crown"></i> نظام الفريق: <span class="value">10% دخل سلبي</span></span>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo"><i class="fas fa-dragon"></i> Dragon<span style="color:white; -webkit-text-fill-color:white;">Pro</span></div>
+        <div class="badge"><span class="dot"></span> جاهز للأرباح 🚀</div>
+    </nav>
+
+    <div class="main-container">
+        <!-- الشات -->
+        <div class="chat-section">
+            <div class="chat-header"><i class="fas fa-message"></i> محادثة المسوق الذكي</div>
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="avatar bot-avatar"><i class="fas fa-robot"></i></div>
+                    <div class="bubble">
+                        <i class="fas fa-crown" style="color: gold;"></i> <strong>أهلاً بيك يا بطل التسويق!</strong> 🐉<br><br>
+                        أنا <span class="highlight">دراجون برو</span>، مساعدك الشخصي باللهجة السودانية.<br>
+                        <span class="green">✨ نظام العمولات الجديد: 90% من الربح ليك!</span><br>
+                        <span class="green">✨ العميل الدائم: عمولتك في كل مرة يشتري (تسجيل تلقائي)</span><br><br>
+                        تحت تصنيفات شاملة فيها كل خدماتنا وأسعارنا 2026.<br>
+                        <div class="quote-box">"اختر سؤالك من تحت، رديجي يدق و يوجعك أرباح 💸"</div>
+                    </div>
+                </div>
+            </div>
+            <div class="typing-indicator" id="typingIndicator">
+                <span class="dot-typing"></span><span class="dot-typing"></span><span class="dot-typing"></span>
+            </div>
+            <div class="input-disabled">
+                <i class="fas fa-lock" style="color: gold;"></i> الكتابة مقفولة لتوفير وقتك .. اختار تصنيف وسؤال من تحت 👇
+            </div>
+        </div>
+
+        <!-- التصنيفات والأسئلة -->
+        <div class="controls-section">
+            <div class="categories-nav" id="categoryNav"></div>
+            <div class="questions-grid" id="questionsGrid"></div>
+        </div>
+    </div>
+
+    <script>
+        // ========== قاعدة المعرفة الشاملة جداً (باللهجة السودانية + كل الخدمات والأسعار الجديدة) ==========
+        const knowledgeBase = {
+            "start": {
+                label: "🔥 البداية و الأرباح",
+                icon: "fas fa-rocket",
+                questions: [
+                    { q: "كيف أبدا شغل مع دراجون؟ وهل في رسوم؟", a: "🚀 <b>البداية ببلاش ومكاسبك فورية:</b><br><br>• سجّل في المنصة الرسمية: <a href='https://dragoncrypto10-beep.github.io/-DRC/' target='_blank' style='color:gold;'>اضغط هنا</a><br>• تستلم قائمة الخدمات والتصاميم الجاهزة.<br>• انشر الخدمات على واتساب، فيسبوك، تيك توك.<br>• أي زبون يطلب حوله لينا واستلم عمولتك فوراً.<br><br>✅ ما في رسوم اشتراك، ولا مصاريف خفية. الربح 90% من صافي أرباح الخدمات الرقمية." },
+                    { q: "نظام العمولات الجديد (90%) و العملاء الدائمين", a: "💰 <b>نظام العمولات المطور (2026):</b><br><br>• <span class='highlight'>الخدمات الرقمية:</span> <b>90%</b> من صافي الربح للمسوق (10% للشركة).<br>• <span class='highlight'>باقة رجال الأعمال:</span> عمولة ثابتة 100,000 ج.س.<br>• <span class='highlight'>نظام الفريق:</span> 10% من أرباح المسوقين اللي تحتك (دخل سلبي).<br>• <span class='highlight'>العملاء الدائمين (الأهم):</span> أي عميل تجيبه، يتم تسجيله باسمك تلقائياً. كل مرة يشتري مستقبلاً (حتى بعد سنة) تتصلك عمولتك مباشرة بدون متابعة.<br>• <span class='green'>عرض الشهر:</span> عمولة 100% لأول 5 مسوقين في بعض الخدمات.<br><br>💡 مثال: خدمة سعرها 100,000 ج.س، ربحها 30,000، عمولتك 27,000." },
+                    { q: "كيف أضمن حقي واثبات الطلب؟", a: "🛡️ <b>طريقتين لضمان عمولتك:</b><br><br>1️⃣ الزبون يتواصل معانا مباشرة ويقول <b>‘أنا من طرف [اسمك]’</b><br>2️⃣ إنت ترسل رقم الزبون للأدمن مع عبارة <b>‘ده زبوني’</b><br><br>✅ بعد ما يتم الخدمة، عمولتك تنزل فوراً.<br><br>🔗 روابط الدعم:<br>• <a href='https://wa.me/249996019592' target='_blank' style='color:gold;'>واتساب رئيسي</a><br>• <a href='https://wa.me/249906361815' target='_blank' style='color:gold;'>احتياطي</a>" },
+                    { q: "كيف أبني فريقي وأكسب دخل سلبي؟", a: "👥 <b>نظام الفريق (الدخل السلبي):</b><br><br>أي مسوق جديد تدخله عن طريقك، يصبح جزء من فريقك. عندما يبيع ويحقق أرباح، السيستم يحسب لك <b>10% من أرباحه</b> (من غير ما ينقص من حقه شيئ).<br><br>🔹 خطوتين لضمان حقوقك:<br>1- تسجيلك الرسمي معنا.<br>2- تسجيل فريقك باسمك (يتبعوك ليك).<br><br>🔥 كل ما كبر فريقك، زاد دخلك وانت نايم!" }
+                ]
+            },
+            "usdt_cards": {
+                label: "💳 USDT والبطاقات",
+                icon: "fa-solid fa-credit-card",
+                questions: [
+                    { q: "سعر USDT وطريقة الربح منه", a: "🪙 <b>USDT (الدولار الرقمي):</b><br>• <b>سعر الأساس للمنتج:</b> <span class='highlight'>3,650 ج.س</span> (قابل للتغيير حسب السوق).<br>• أنت تبيع للزبون بالسعر البتحبّو (مثلاً 3800، 4000).<br>• الفرق كامل <b>عمولتك الصافية</b> (90% بعد خصم بسيط للشركة).<br>• مثال: بعت بسعر 4000 -> الفرق 350، عمولتك 315 ج.س.<br>• مطلوب يومياً من التجار والمستثمرين." },
+                    { q: "فيزا RedotPay السعر والمميزات", a: "💳 <b>بطاقة RedotPay (فيزا عالمية):</b><br>• <b>السعر الأساسي:</b> <span class='highlight'>80,000 ج.س</span><br>• <b>عمولتك:</b> 80% من صافي الربح (حوالي 16,000+ إذا بعت ب 100,000).<br>• <b>المميزات:</b> بدون حساب بنكي، بدون جواز، تفعيل بالبريد فقط، تدقع بيها في أي موقع عالمي، اشتراكات، ألعاب، إعلانات.<br>• ✅ تم التسليم للعديد من العملاء بنجاح." },
+                    { q: "فيزا كارتا (Carta) و فيزا أخرى", a: "💳 <b>بطاقة كارتا (مشابهة لريدوت):</b><br>• السعر: 80,000 ج.س<br>• عمولتك: 80% من الربح.<br>• صالحة 3 سنوات.<br>💳 <b>فيزا شخصية / إصدار بطاقة</b> حسب الطلب (تواصل مع الدعم)." },
+                    { q: "باقات الذكاء الاصطناعي (ChatGPT+، Canva Pro...)", a: "🤖 <b>باقات الذكاء الاصطناعي VIP:</b><br>• <b>شهري</b> (ChatGPT Plus + Gemini Pro + Canva Pro + غيرها): <span class='highlight'>30,000 ج.س</span><br>• <b>سنوي</b> (توفير): <span class='highlight'>50,000 ج.س</span><br>• عمولتك 90% من الربح.<br>• مطلوبة للطلاب، المصممين، صناع المحتوى." }
+                ]
+            },
+            "bankak": {
+                label: "🏦 بنكك وفوري",
+                icon: "fas fa-university",
+                questions: [
+                    { q: "استخراج رقم الهاتف للتحويل الغلط", a: "📞 <b>حوّلت قروش بالغلط؟</b><br>بنستخرج رقم الهاتف المرتبط بالحساب اللي وصلته الفلوس عشان ترجع حقك.<br>• <b>السعر:</b> <span class='highlight'>80,000 ج.س</span><br>• المدة: 24 ساعة.<br>• المطلوب: رقم الحساب المحول إليه." },
+                    { q: "كشف حساب بنكك (عادي وكامل)", a: "📑 <b>كشف حساب بنكك:</b><br>• <b>عادي</b> (الرصيد + آخر 3 معاملات): <span class='highlight'>140,000 ج.س</span><br>• <b>كامل</b> (الرصيد + آخر 3 معاملات + أسماء المستفيدين): <span class='highlight'>220,000 ج.س</span><br>• المدة: 24-48 ساعة.<br>• البيانات المطلوبة: رقم الحساب، الاسم الرباعي، البريد الإلكتروني، رقم الهاتف، تاريخ الميلاد، اسم الوالدة، صورة الهوية." },
+                    { q: "تغيير رقم الهاتف في بنكك", a: "📱 <b>تغيير الرقم المرتبط بحساب بنكك</b><br>• يتم حسب حالة الحساب، يرجى التواصل مع الدعم.<br>• عادة نحتاج: صورة الرقم الوطني، إثبات الهوية، وبيانات الحساب.<br>• السعر: يحدد حسب التعقيد (تنافسي)." },
+                    { q: "حل مشكلة Access Block ونسيان كلمة المرور", a: "🔓 <b>مشاكل الدخول (Access Block / نسيان كلمة السر)</b><br>• بنحل مشكلة الحظر والتجميد ونسيان أسئلة الأمان.<br>• <b>السعر:</b> حوالي <span class='highlight'>200,000 ج.س</span> حسب الحالة (يتم التحديد بعد التشخيص).<br>• المطلوب: البيانات الكاملة (رقم حساب، إيميل، رقم هاتف، صورة هوية)." },
+                    { q: "كود التفعيل لحسابات بنكك الجديدة", a: "🔑 <b>لم يصلك كود التفعيل؟</b><br>• بنرسل لك كود التفعيل الخاص بحسابك في بنكك.<br>• <b>السعر:</b> <span class='highlight'>160,000 ج.س</span><br>• خلال 24 ساعة." },
+                    { q: "خدمات فوري (فيصل) الشاملة", a: "💜 <b>تطبيق فوري (بنك فيصل) - كل الحلول:</b><br>• <b>نسيان كلمة المرور، حظر الحساب، تجميد، تغيير الهاتف، كشف حساب، تفاصيل البلاغ</b><br>• جميع خدمات فوري متوفرة، السعر حسب الخدمة (حوالي 50-200 ألف). تواصل مع الدعم." },
+                    { q: "حل مشاكل الإرسال والاستقبال واستخراج رقم الحساب", a: "🔄 <b>مشاكل التحويلات والإرسال/الاستقبال</b><br>• بنحلها بسرعة.<br>• استخراج رقم الحساب أو اسم الوالدة متوفر.<br>• يحدد السعر حسب التعقيد." }
+                ]
+            },
+            "social": {
+                label: "📈 سوشيال ميديا",
+                icon: "fas fa-chart-line",
+                questions: [
+                    { q: "أسعار زيادة متابعين تيك توك", a: "🎵 <b>TikTok - أسعار 2026:</b><br><table><tr><th>الخدمة</th><th>السعر (ج.س)</th></tr><tr><td>1000 متابع</td><td>8,400</td></tr><tr><td>1000 مشاهدة</td><td>2,400</td></tr><tr><td>1000 لايك</td><td>2,400</td></tr><tr><td>1000 تعليق مخصص</td><td>حسب الطلب</td></tr></table><br>⚡ عمولتك 90% من الربح." },
+                    { q: "أسعار فيسبوك (متابعين - لايكات - تعليقات)", a: "📘 <b>Facebook:</b><br><table><tr><th>الخدمة</th><th>السعر (ج.س)</th></tr><tr><td>1000 متابع</td><td>8,400</td></tr><tr><td>1000 مشاهدة</td><td>3,600</td></tr><tr><td>1000 لايك</td><td>2,400</td></tr><tr><td>1000 تعليق</td><td>8,400</td></tr><tr><td>1000 مشاركة</td><td>3,600</td></tr></table>" },
+                    { q: "أسعار يوتيوب (مشتركين - مشاهدات)", a: "▶️ <b>YouTube:</b><br><table><tr><th>الخدمة</th><th>السعر (ج.س)</th></tr><tr><td>1000 مشترك</td><td>52,800</td></tr><tr><td>1000 مشاهدة</td><td>600</td></tr><tr><td>1000 لايك</td><td>2,400</td></tr><tr><td>1000 تعليق</td><td>حسب الطلب</td></tr></table>" },
+                    { q: "أسعار تليجرام (متابعين - تفاعل)", a: "✈️ <b>Telegram:</b><br><table><tr><th>الخدمة</th><th>السعر (ج.س)</th></tr><tr><td>1000 متابع</td><td>9,600</td></tr><tr><td>1000 تفاعل</td><td>1,800</td></tr><tr><td>1000 مشاهدة</td><td>600</td></tr><tr><td>1000 تعليق</td><td>حسب الطلب</td></tr></table>" },
+                    { q: "أسعار انستقرام وتويتر وواتساب", a: "📸 <b>Instagram:</b><br>1000 متابع: 17,400 | 1000 لايك: 2,400 | 1000 مشاهدة: 600<br>🐦 <b>X (Twitter):</b><br>1000 متابع: 34,200 | 1000 لايك: 6,720 | 1000 مشاهدة: 600<br>💬 <b>WhatsApp:</b><br>1000 متابع: 12,000 | 1000 تفاعل: 4,800<br><br>⚡ عمولتك 90%." },
+                    { q: "شحن عملات تيك توك (جنيه سوداني)", a: "💰 <b>شحن عملات TikTok بالجنيه السوداني:</b><br><table><tr><th>العملات</th><th>السعر (ج.س)</th></tr><tr><td>350</td><td>18,000</td></tr><tr><td>500</td><td>27,600</td></tr><tr><td>700</td><td>34,800</td></tr><tr><td>1000</td><td>51,600</td></tr><tr><td>2000</td><td>98,400</td></tr><tr><td>3000</td><td>144,000</td></tr><tr><td>6000</td><td>276,000</td></tr><tr><td>10000</td><td>474,000</td></tr></table>" },
+                    { q: "شحن عملات تيك توك (جنيه مصري)", a: "🇪🇬 <b>شحن عملات TikTok بالجنيه المصري:</b><br><table><tr><th>العملات</th><th>السعر (ج.م)</th></tr><tr><td>350</td><td>276</td></tr><tr><td>700</td><td>504</td></tr><tr><td>1000</td><td>720</td></tr><tr><td>1400</td><td>960</td></tr><tr><td>2000</td><td>1,500</td></tr><tr><td>2500</td><td>1,800</td></tr><tr><td>4000</td><td>2,700</td></tr></table>" },
+                    { q: "توثيق الحسابات (علامة زرقاء) السعر", a: "✔️ <b>توثيق حسابات السوشيال ميديا:</b><br>• فيسبوك، انستقرام، تويتر، تليجرام.<br>• <b>السعر:</b> <span class='highlight'>28 دولار</span> أو ما يعادله (حوالي 85,000 ج.س حسب السعر).<br>• عمولتك 90% من الربح.<br>• تواصل مع الدعم لتقديم المتطلبات." }
+                ]
+            },
+            "games": {
+                label: "🎮 شدات وجواهر",
+                icon: "fas fa-gamepad",
+                questions: [
+                    { q: "أسعار شدات ببجي (PUBG) كاملة", a: "🔥 <b>PUBG – شدات:</b><br><table><tr><th>الكمية</th><th>السعر (ج.س)</th></tr><tr><td>60 شدة</td><td>4,200</td></tr><tr><td>120 شدة</td><td>8,400</td></tr><tr><td>325 شدة</td><td>21,000</td></tr><tr><td>660 شدة</td><td>42,000</td></tr><tr><td>720 شدة</td><td>50,400</td></tr><tr><td>3850 شدة</td><td>192,000</td></tr><tr><td>8100 شدة</td><td>330,000</td></tr></table>" },
+                    { q: "أسعار جواهر فري فاير (Free Fire)", a: "💎 <b>Free Fire – جواهر:</b><br><table><tr><th>الكمية</th><th>السعر (ج.س)</th></tr><tr><td>110 💎</td><td>4,200</td></tr><tr><td>220 💎</td><td>8,400</td></tr><tr><td>341 💎</td><td>12,600</td></tr><tr><td>570 💎</td><td>21,000</td></tr><tr><td>1160 💎</td><td>42,000</td></tr><tr><td>2240 💎</td><td>84,000</td></tr></table><br><b>عروض إضافية:</b><br>• أسبوعية (ID): 9,600<br>• أسبوعية حساب: 7,200<br>• دروب 0.99: 4,800<br>• بويا باس (Team Code): 6,000<br>• شهرية (ID): 48,000<br>• شهرية حساب: 42,000" },
+                    { q: "شحن بلايستيشن (بطاقات و بلس)", a: "🎮 <b>بلايستيشن:</b><br>شحن بطاقات ستور وبلايستيشن بلس متوفر.<br>• اشتراك beIN SPORTS (3 شهور: 182,000 ج.س، 6 شهور وسنة متوفرة).<br>• تفعيل كارت سوداني.<br>• تواصل مع الدعم." },
+                    { q: "شحن ألعاب أخرى (COD, Clash, FIFA...)؟", a: "🎯 <b>كل الألعاب متوفرة:</b> Call of Duty, Clash of Clans, Clash Royale, FIFA, PES وغيرها.<br>تواصل مع الدعم للسعر حسب اللعبة والكمية." }
+                ]
+            },
+            "misc": {
+                label: "🛠️ خدمات متنوعة",
+                icon: "fas fa-cogs",
+                questions: [
+                    { q: "تركيب Starlink السعر", a: "🛰️ <b>تركيب Starlink:</b><br>• <b>السعر:</b> <span class='highlight'>260,000 ج.س</span><br>• يشمل التركيب والتشغيل.<br>• حل مشاكل فقدان الإيميل والتحقق KYC، إزالة الفواتير العالية، سداد الفواتير." },
+                    { q: "حل مشكلة تسجيل الدخول تليجرام", a: "✈️ <b>تليجرام مشكلة تسجيل الدخول:</b><br>• إذا ما بيدخل أو مسكر، بنحلها.<br>• <b>السعر:</b> <span class='highlight'>15,000 ج.س</span><br>• استخراج رقم الهاتف من تليجرام متوفر (السعر حسب الحالة)." },
+                    { q: "تنشيط تليجرام بريميوم (3 شهور)", a: "💎 <b>تليجرام بريميوم – 3 شهور:</b><br>• <b>السعر:</b> <span class='highlight'>19,000 ج.س</span> (سعر خاص للمسوقين).<br>• يمكنك البيع بسعر أعلى (22,000 - 25,000).<br>• عمولتك 90% من الربح." },
+                    { q: "استخراج الشهادات (أساس وثانوي)", a: "🎓 <b>شهاداتك علينا:</b><br>• استخراج شهادة الأساس وشهادة الثانوية.<br>• <b>السعر:</b> <span class='highlight'>60,000 ج.س</span> للشهادة.<br>• توصيل لكل ولايات السودان." },
+                    { q: "خدمات الرصيد والتحويل (MyKashy، فودافون كاش)", a: "🔄 <b>خدمات الرصيد:</b><br>• شحن رصيد لجميع الشبكات.<br>• تحويل واستلام فودافون كاش.<br>• استبدال MyKashy إلى بنكك.<br>• أسعار تنافسية، تواصل مع الدعم." },
+                    { q: "قناة VIP للتوصيات (تداول)", a: "📊 <b>قناة الـVIP للتوصيات:</b><br>• صفقات يومية (سبوت + فيوتشر) بنسبة نجاح 80%.<br>• إشراف وتوجيه، إدارة محافظ.<br>• <b>الأسعار:</b> شهر 29$، شهرين 50$، 3 شهور 70$.<br>• عمولتك 90% من الربح." },
+                    { q: "دورات تداول (عملات رقمية وفوركس)", a: "📈 <b>دورات تداول احترافية:</b><br>• متوفرة مع قناة التوصيات.<br>• تشمل كتب وفيديوهات وتحليل يومي.<br>• تواصل مع الدعم للتفاصيل." }
+                ]
+            },
+            "contact": {
+                label: "📞 التواصل والدعم",
+                icon: "fas fa-headset",
+                questions: [
+                    { q: "أرقام واتساب الدعم الفني", a: "📞 <b>تواصل مع الدعم:</b><br>• <a href='https://wa.me/249996019592' target='_blank' style='color:gold;'>واتساب رئيسي: 249996019592+</a><br>• <a href='https://wa.me/249906361815' target='_blank' style='color:gold;'>واتساب احتياطي: 249906361815+</a><br>• <a href='https://wa.me/249111294437' target='_blank' style='color:gold;'>دعم إضافي: 249111294437+</a>" },
+                    { q: "روابط مجموعة واتساب وقناة واتساب", a: "👥 <b>مجموعة واتساب:</b> <a href='https://chat.whatsapp.com/DxaKydHBwvq8yZF235P8T3' target='_blank' style='color:gold;'>انضم هنا</a><br>📢 <b>قناة واتساب:</b> <a href='https://whatsapp.com/channel/0029VbCUNno6buMJM8YzBA2Z' target='_blank' style='color:gold;'>اشترك الآن</a>" },
+                    { q: "تليجرام وفيسبوك", a: "✈️ <b>تليجرام (مجموعة نقاش):</b> @Dragon_Marketing_Teamm<br>📘 <b>فيسبوك (آراء العملاء):</b> <a href='https://www.facebook.com/share/p/1CYnvG5JYG/' target='_blank' style='color:gold;'>شاهد هنا</a>" }
+                ]
+            },
+            "payments": {
+                label: "💳 طرق الدفع",
+                icon: "fas fa-credit-card",
+                questions: [
+                    { q: "ما هي طرق الدفع المدعومة؟", a: "💵 <b>طرق الدفع المتاحة:</b><br>• جنيه سوداني (ج.س)<br>• جنيه مصري (ج.م)<br>• ريال سعودي<br>• USDT (عملة رقمية)<br>• ويسترن يونيون<br>• بايير (Payeer)<br>• باي بال (PayPal)<br>• فوري<br>• بطاقات فيزا (RedotPay/Carta)<br><br>ومتاح طرق أخرى حسب الاتفاق." }
+                ]
+            },
+            "team": {
+                label: "👥 نظام الفريق",
+                icon: "fas fa-users",
+                questions: [
+                    { q: "شرح نظام الفريق (الدخل السلبي) بالتفصيل", a: "🧑‍🤝‍🧑 <b>نظام الفريق (10% عمولة من فريقك):</b><br><br>• أي مسوق جديد تدخله عن طريقك للتسويق معنا يصبح جزءاً من فريقك الشخصي.<br>• عندما يبدأ بالبيع وتحقيق أرباح، أنت تشاركه النجاح تلقائياً – <b>10% من أرباحه</b> تنزل على حسابك مباشرة (من غير ما ينقص من حقه شيئ، ده حافز من الشركة ليك).<br>• فريقك يتحول إلى مصدر دخل دائم ✅<br>• نجاح الفريق يكسبك الملايين ✅<br>• تجعل المال يعمل لأجلك وانت نايم ✅<br><br><b>خطوتان لضمان حقوقك:</b><br>1. تسجيلك الرسمي معنا.<br>2. تسجيل فريقك باسمك (ليتبعوك ليك).<br><br>🔥 ابدأ كون فريقك الآن!" }
+                ]
+            }
+        };
+
+        // تهيئة النظام
+        document.addEventListener('DOMContentLoaded', () => {
+            initCategories();
+            loadQuestions('start');
+        });
+
+        function initCategories() {
+            const nav = document.getElementById('categoryNav');
+            nav.innerHTML = '';
+            Object.keys(knowledgeBase).forEach(key => {
+                const cat = knowledgeBase[key];
+                const btn = document.createElement('button');
+                btn.className = 'cat-btn';
+                if (key === 'start') btn.classList.add('active');
+                btn.innerHTML = `<i class="${cat.icon}"></i> ${cat.label}`;
+                btn.onclick = () => {
+                    document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    loadQuestions(key);
+                };
+                nav.appendChild(btn);
+            });
+        }
+
+        function loadQuestions(catKey) {
+            const grid = document.getElementById('questionsGrid');
+            grid.style.opacity = '0.5';
+            setTimeout(() => {
+                grid.innerHTML = '';
+                const questions = knowledgeBase[catKey].questions;
+                questions.forEach(item => {
+                    const qBtn = document.createElement('div');
+                    qBtn.className = 'q-btn';
+                    qBtn.innerHTML = `<span>${item.q}</span> <i class="fas fa-chevron-left"></i>`;
+                    qBtn.onclick = () => handleQuestionClick(item.q, item.a);
+                    grid.appendChild(qBtn);
+                });
+                grid.style.opacity = '1';
+            }, 200);
+        }
+
+        function handleQuestionClick(question, answer) {
+            appendMessage('user', question);
+            const typing = document.getElementById('typingIndicator');
+            typing.style.display = 'block';
+            document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+            setTimeout(() => {
+                typing.style.display = 'none';
+                appendMessage('bot', answer);
+            }, 800);
+        }
+
+        function appendMessage(sender, text) {
+            const chat = document.getElementById('chatMessages');
+            const msgDiv = document.createElement('div');
+            msgDiv.className = `message ${sender === 'bot' ? 'bot-message' : 'user-message'}`;
+            
+            const avatar = document.createElement('div');
+            avatar.className = `avatar ${sender === 'bot' ? 'bot-avatar' : 'user-avatar'}`;
+            avatar.innerHTML = sender === 'bot' ? '<i class="fas fa-dragon"></i>' : '<i class="fas fa-user"></i>';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'bubble';
+            bubble.innerHTML = text; // النص يحتوي على HTML من القاعدة
+            
+            if (sender === 'bot') {
+                msgDiv.appendChild(avatar);
+                msgDiv.appendChild(bubble);
+            } else {
+                msgDiv.appendChild(bubble);
+                msgDiv.appendChild(avatar);
+            }
+            chat.appendChild(msgDiv);
+            chat.scrollTo({ top: chat.scrollHeight, behavior: 'smooth' });
+        }
+    </script>
+</body>
+</html>
